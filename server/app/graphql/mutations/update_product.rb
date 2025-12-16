@@ -10,7 +10,7 @@ module Mutations
       require_auth!
       
       product = Product.find(id)
-      context[:current_store] = product.store
+      with_store(product.store)
       authorize!(product, :update)
       
       result = Products::UpdateProduct.call(
