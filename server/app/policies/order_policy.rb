@@ -1,6 +1,6 @@
 class OrderPolicy < ApplicationPolicy
   def show?
-    member? && belongs_to_store?
+    member?
   end
   
   def create?
@@ -8,16 +8,17 @@ class OrderPolicy < ApplicationPolicy
   end
   
   def update?
-    can_write? && belongs_to_store?
+    can_write?
   end
   
   def update_fulfillment?
-    can_write? && belongs_to_store?
+    can_write?
   end
   
-  private
+  protected
   
-  def belongs_to_store?
-    record.store_id == store&.id
+  # Order belongs_to :store directly
+  def derive_store_from_record
+    record&.store
   end
 end
