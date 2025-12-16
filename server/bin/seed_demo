@@ -1,0 +1,6 @@
+#!/bin/bash
+set -e
+
+echo "=== Generating demo data ==="
+bundle exec rails runner "GenerateDemoDataJob.perform_now(Store.first&.id || Store.create!(name: 'Demo Store', slug: 'demo').id)"
+echo "=== Demo data generated! ==="

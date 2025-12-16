@@ -1,0 +1,95 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: cartify
+      POSTGRES_PASSWORD: cartify_dev
+      POSTGRES_DB: cartify_development
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cartify"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    command: ./bin/docker-entrypoint.sh
+    volumes:
+      - ./server:/app
+      - bundle_cache:/usr/local/bundle
+    ports:
+      - "3000:3000"
+    environment:
+      - RAILS_ENV=development
+      - DATABASE_URL=postgres://cartify:cartify_dev@postgres:5432/cartify_development
+      - REDIS_URL=redis://redis:6379/0
+      - ACTION_CABLE_URL=ws://localhost:3000/cable
+      - SECRET_KEY_BASE=dev_secret_key_base_change_in_production
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    stdin_open: true
+    tty: true
+
+  sidekiq:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    command: bundle exec sidekiq
+    volumes:
+      - ./server:/app
+      - bundle_cache:/usr/local/bundle
+    environment:
+      - RAILS_ENV=development
+      - DATABASE_URL=postgres://cartify:cartify_dev@postgres:5432/cartify_development
+      - REDIS_URL=redis://redis:6379/0
+      - SECRET_KEY_BASE=dev_secret_key_base_change_in_production
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    volumes:
+      - ./web:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_GRAPHQL_HTTP_URL=http://localhost:3000/graphql
+      - VITE_GRAPHQL_WS_URL=ws://localhost:3000/cable
+    depends_on:
+      - server
+    stdin_open: true
+    tty: true
+
+volumes:
+  postgres_data:
+  redis_data:
+  bundle_cache:

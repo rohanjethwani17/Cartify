@@ -1,0 +1,14 @@
+#!/bin/bash
+set -e
+
+echo "=== Installing dependencies ==="
+bundle install
+
+echo "=== Setting up database ==="
+bundle exec rails db:prepare
+
+echo "=== Seeding demo data ==="
+bundle exec rails db:seed
+
+echo "=== Setup complete! ==="
+echo "Run 'bundle exec rails server' to start the server"
