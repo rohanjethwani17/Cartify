@@ -9,16 +9,8 @@ module Mutations
       require_auth!
       
       alert = InventoryAlert.find(alert_id)
-      context[:current_store] = alert.store
-      
-      policy_context = ApplicationPolicy.new(
-        { current_user: current_user, current_store: alert.store },
-        nil
-      )
-      
-      unless policy_context.send(:can_write?)
-        raise GraphQL::ExecutionError, 'Not authorized to mark alert as reviewed'
-      end
+      with_store(alert.store)
+      authorize!(alert, :mark_reviewed)
       
       result = Inventory::MarkAlertReviewed.call(
         alert: alert,
