@@ -15,16 +15,8 @@ module Mutations
       variant = Variant.find(variant_id)
       location = Location.find(location_id)
       
-      context[:current_store] = location.store
-      
-      policy_context = ApplicationPolicy.new(
-        { current_user: current_user, current_store: location.store },
-        nil
-      )
-      
-      unless policy_context.send(:can_write?)
-        raise GraphQL::ExecutionError, 'Not authorized to adjust inventory'
-      end
+      with_store(location.store)
+      authorize!(location, :adjust)
       
       result = Inventory::AdjustInventory.call(
         variant: variant,
