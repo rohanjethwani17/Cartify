@@ -3,7 +3,6 @@ import { render, screen, waitFor } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
 import { BrowserRouter } from 'react-router-dom'
 import { DashboardPage } from '../pages/DashboardPage'
-import { AuthProvider } from '../contexts/AuthContext'
 import { gql } from '@apollo/client'
 
 // Mock the auth context
