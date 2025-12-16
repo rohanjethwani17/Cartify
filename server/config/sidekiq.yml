@@ -1,0 +1,14 @@
+# Sidekiq configuration
+
+:concurrency: 5
+:timeout: 25
+
+:queues:
+  - [critical, 3]
+  - [default, 2]
+  - [low, 1]
+
+# Process lifecycle callbacks
+:lifecycle:
+  quiet:
+    - 60000 # 60 seconds for graceful shutdown
