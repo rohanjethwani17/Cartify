@@ -1,6 +1,6 @@
 class ProductPolicy < ApplicationPolicy
   def show?
-    member? && belongs_to_store?
+    member?
   end
   
   def create?
@@ -8,16 +8,17 @@ class ProductPolicy < ApplicationPolicy
   end
   
   def update?
-    can_write? && belongs_to_store?
+    can_write?
   end
   
   def destroy?
-    owner? && belongs_to_store?
+    owner?
   end
   
-  private
+  protected
   
-  def belongs_to_store?
-    record.store_id == store&.id
+  # Product belongs_to :store directly
+  def derive_store_from_record
+    record&.store
   end
 end
