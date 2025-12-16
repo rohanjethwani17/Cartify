@@ -93,7 +93,7 @@ const INVENTORY_LOW_SUBSCRIPTION = gql`
 export function DashboardPage() {
   const { currentStoreId } = useAuth()
   const [newOrders, setNewOrders] = useState<any[]>([])
-  const [newAlerts, setNewAlerts] = useState<any[]>([])
+  const [, setNewAlerts] = useState<any[]>([])
 
   const { data, loading, refetch } = useQuery(DASHBOARD_QUERY, {
     variables: { storeId: currentStoreId },
