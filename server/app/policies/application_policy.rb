@@ -1,9 +1,9 @@
 class ApplicationPolicy
-  attr_reader :user, :store, :record
+  attr_reader :user, :record
   
   def initialize(context, record)
     @user = context[:current_user]
-    @store = context[:current_store]
+    @context_store = context[:current_store]
     @record = record
   end
   
@@ -29,8 +29,21 @@ class ApplicationPolicy
   
   protected
   
+  # Derive store from context OR from record (defensive design)
+  # This ensures authorization works even if context[:current_store] wasn't set
+  def store
+    @store ||= @context_store || derive_store_from_record
+  end
+  
+  # Override in subclasses for record-specific store derivation
+  def derive_store_from_record
+    return nil unless record.respond_to?(:store)
+    record.store
+  end
+  
   def membership
-    @membership ||= user&.store_memberships&.find_by(store: store)
+    return nil unless store && user
+    @membership ||= user.store_memberships.find_by(store: store)
   end
   
   def member?
