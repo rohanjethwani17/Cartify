@@ -9,8 +9,10 @@ import { GraphQLWsLink } from '@apollo/client/link/subscriptions'
 import { getMainDefinition } from '@apollo/client/utilities'
 import { createClient } from 'graphql-ws'
 
-const GRAPHQL_HTTP_URL = import.meta.env.VITE_GRAPHQL_HTTP_URL || 'http://localhost:3000/graphql'
-const GRAPHQL_WS_URL = import.meta.env.VITE_GRAPHQL_WS_URL || 'ws://localhost:3000/cable'
+// @ts-expect-error Vite env
+const GRAPHQL_HTTP_URL = import.meta.env?.VITE_GRAPHQL_HTTP_URL || 'http://localhost:3000/graphql'
+// @ts-expect-error Vite env
+const GRAPHQL_WS_URL = import.meta.env?.VITE_GRAPHQL_WS_URL || 'ws://localhost:3000/cable'
 
 // HTTP link for queries and mutations
 const httpLink = createHttpLink({
