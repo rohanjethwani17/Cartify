@@ -1,0 +1,17 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  url: <%= ENV['DATABASE_URL'] %>
+
+development:
+  <<: *default
+  database: cartify_development
+
+test:
+  <<: *default
+  database: cartify_test
+
+production:
+  <<: *default
+  database: cartify_production

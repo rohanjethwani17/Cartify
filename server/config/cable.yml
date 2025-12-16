@@ -1,0 +1,16 @@
+# ActionCable configuration
+# Using Redis adapter for production-capable subscriptions
+# This allows triggers from background jobs (Sidekiq)
+
+development:
+  adapter: redis
+  url: <%= ENV.fetch('REDIS_URL') { 'redis://localhost:6379/1' } %>
+  channel_prefix: cartify_development
+
+test:
+  adapter: test
+
+production:
+  adapter: redis
+  url: <%= ENV.fetch('REDIS_URL') { 'redis://localhost:6379/1' } %>
+  channel_prefix: cartify_production
