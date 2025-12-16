@@ -10,4 +10,11 @@ class StorePolicy < ApplicationPolicy
   def update_settings?
     owner?
   end
+  
+  protected
+  
+  # The record IS the store
+  def derive_store_from_record
+    record
+  end
 end
