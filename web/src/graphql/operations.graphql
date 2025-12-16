@@ -1,0 +1,313 @@
+# Queries
+
+query Me {
+  me {
+    id
+    email
+    name
+    stores {
+      id
+      name
+      slug
+    }
+  }
+}
+
+query Dashboard($storeId: ID!) {
+  store(id: $storeId) {
+    id
+    name
+    orderAgingSummary {
+      zeroToOneDay
+      twoToThreeDays
+      fourToSevenDays
+      eightPlusDays
+    }
+    inventoryAlerts(reviewed: false) {
+      id
+      threshold
+      currentLevel
+      createdAt
+      variant {
+        id
+        displayName
+        sku
+      }
+      location {
+        id
+        name
+      }
+    }
+  }
+  orders(storeId: $storeId, first: 10) {
+    edges {
+      node {
+        id
+        orderNumber
+        email
+        totalPrice
+        status
+        fulfillmentStatus
+        createdAt
+      }
+    }
+  }
+}
+
+query Orders($storeId: ID!, $first: Int, $after: String, $search: String, $status: String) {
+  orders(storeId: $storeId, first: $first, after: $after, search: $search, status: $status) {
+    edges {
+      cursor
+      node {
+        id
+        orderNumber
+        email
+        status
+        fulfillmentStatus
+        financialStatus
+        totalPrice
+        createdAt
+        lineItems {
+          id
+          title
+          quantity
+        }
+      }
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    totalCount
+  }
+}
+
+query Order($id: ID!) {
+  order(id: $id) {
+    id
+    orderNumber
+    email
+    status
+    fulfillmentStatus
+    financialStatus
+    subtotal
+    totalTax
+    totalShipping
+    totalPrice
+    currency
+    shippingAddress
+    note
+    createdAt
+    updatedAt
+    lineItems {
+      id
+      title
+      variantTitle
+      sku
+      quantity
+      price
+      fulfilledQuantity
+      remainingToFulfill
+      variant {
+        id
+        displayName
+      }
+    }
+    fulfillments {
+      id
+      status
+      trackingNumber
+      trackingCompany
+      trackingUrl
+      shippedAt
+    }
+  }
+}
+
+query Inventory($storeId: ID!, $threshold: Int) {
+  store(id: $storeId) {
+    id
+    lowStockThreshold
+    locations {
+      id
+      name
+    }
+    inventoryAlerts(reviewed: false) {
+      id
+      threshold
+      currentLevel
+      reviewed
+      createdAt
+      variant {
+        id
+        title
+        sku
+        displayName
+        product {
+          id
+          title
+        }
+      }
+      location {
+        id
+        name
+      }
+    }
+  }
+  lowStockVariants(storeId: $storeId, threshold: $threshold) {
+    id
+    title
+    sku
+    displayName
+    totalAvailable
+    product {
+      id
+      title
+    }
+    inventoryLevels {
+      id
+      available
+      committed
+      location {
+        id
+        name
+      }
+    }
+  }
+}
+
+query StoreSettings($storeId: ID!) {
+  store(id: $storeId) {
+    id
+    name
+    slug
+    lowStockThreshold
+    settings
+  }
+}
+
+# Mutations
+
+mutation SignIn($email: String!, $password: String!) {
+  signIn(email: $email, password: $password) {
+    user {
+      id
+      email
+      name
+      stores {
+        id
+        name
+        slug
+      }
+    }
+    token
+    errors
+  }
+}
+
+mutation UpdateFulfillmentStatus(
+  $orderId: ID!
+  $status: String!
+  $trackingNumber: String
+  $trackingCompany: String
+) {
+  updateFulfillmentStatus(
+    orderId: $orderId
+    status: $status
+    trackingNumber: $trackingNumber
+    trackingCompany: $trackingCompany
+  ) {
+    order {
+      id
+      fulfillmentStatus
+      status
+    }
+    errors
+  }
+}
+
+mutation MarkAlertReviewed($alertId: ID!) {
+  markInventoryAlertReviewed(alertId: $alertId) {
+    inventoryAlert {
+      id
+      reviewed
+      reviewedAt
+    }
+    errors
+  }
+}
+
+mutation UpdateStoreSettings($storeId: ID!, $lowStockThreshold: Int) {
+  updateStoreSettings(storeId: $storeId, lowStockThreshold: $lowStockThreshold) {
+    store {
+      id
+      lowStockThreshold
+    }
+    errors
+  }
+}
+
+mutation GenerateDemoData($storeId: ID!) {
+  generateDemoData(storeId: $storeId) {
+    success
+    jobId
+    errors
+  }
+}
+
+# Subscriptions
+
+subscription OrderCreated($storeId: ID!) {
+  orderCreated(storeId: $storeId) {
+    id
+    orderNumber
+    email
+    totalPrice
+    status
+    fulfillmentStatus
+    createdAt
+  }
+}
+
+subscription InventoryLow($storeId: ID!, $threshold: Int) {
+  inventoryLow(storeId: $storeId, threshold: $threshold) {
+    id
+    threshold
+    currentLevel
+    createdAt
+    variant {
+      id
+      displayName
+      sku
+    }
+    location {
+      id
+      name
+    }
+  }
+}
+
+subscription FulfillmentStatusChanged($orderId: ID!) {
+  fulfillmentStatusChanged(orderId: $orderId) {
+    id
+    fulfillmentStatus
+    status
+    lineItems {
+      id
+      fulfilledQuantity
+      remainingToFulfill
+    }
+  }
+}
+
+subscription SyncProgress($storeId: ID!) {
+  syncProgressUpdated(storeId: $storeId) {
+    storeId
+    jobId
+    status
+    progress
+    total
+    message
+    completedAt
+  }
+}
