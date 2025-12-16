@@ -11,8 +11,7 @@ module Mutations
     def resolve(store_id:, input:, idempotency_key: nil)
       require_auth!
       
-      store = Store.find(store_id)
-      context[:current_store] = store
+      store = with_store(Store.find(store_id))
       authorize!(store, :show)
       
       result = Orders::CreateOrder.call(
