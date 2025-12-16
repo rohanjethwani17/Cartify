@@ -13,7 +13,7 @@ module Mutations
       require_auth!
       
       order = Order.find(order_id)
-      context[:current_store] = order.store
+      with_store(order.store)
       authorize!(order, :update_fulfillment)
       
       result = Orders::UpdateFulfillmentStatus.call(
