@@ -1,0 +1,51 @@
+source 'https://rubygems.org'
+
+ruby '3.2.2'
+
+# Rails
+gem 'rails', '~> 7.1.0'
+gem 'pg', '~> 1.5'
+gem 'puma', '~> 6.4'
+
+# GraphQL
+gem 'graphql', '~> 2.1'
+gem 'graphql-batch', '~> 0.5'
+
+# Authentication
+gem 'bcrypt', '~> 3.1'
+gem 'jwt', '~> 2.7'
+
+# Background Jobs
+gem 'sidekiq', '~> 7.2'
+gem 'redis', '~> 5.0'
+
+# ActionCable with Redis adapter
+gem 'redis-actionpack', '~> 5.4'
+
+# Utilities
+gem 'bootsnap', require: false
+gem 'rack-cors'
+gem 'dotenv-rails', groups: [:development, :test]
+
+# JSON serialization
+gem 'oj', '~> 3.16'
+
+group :development, :test do
+  gem 'debug', platforms: %i[mri mingw x64_mingw]
+  gem 'rspec-rails', '~> 6.1'
+  gem 'factory_bot_rails', '~> 6.4'
+  gem 'faker', '~> 3.2'
+end
+
+group :development do
+  gem 'listen', '~> 3.8'
+  gem 'rubocop', '~> 1.59'
+  gem 'rubocop-rails', '~> 2.23'
+  gem 'rubocop-rspec', '~> 2.25'
+end
+
+group :test do
+  gem 'shoulda-matchers', '~> 5.3'
+  gem 'database_cleaner-active_record', '~> 2.1'
+  gem 'webmock', '~> 3.19'
+end
