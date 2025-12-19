@@ -1,0 +1,1208 @@
+  [1m[35mSQL (3.8ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "pgcrypto"[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (14.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20240101000012)[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20240101000011),
+(20240101000010),
+(20240101000009),
+(20240101000008),
+(20240101000007),
+(20240101000006),
+(20240101000005),
+(20240101000004),
+(20240101000003),
+(20240101000002),
+(20240101000001),
+(20240101000000);[0m
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-12-18 20:35:37.746352', '2025-12-18 20:35:37.746355') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', 'd1c202edabac0d4eab3db9ece23e9422ea7368b5', '2025-12-18 20:35:37.748311', '2025-12-18 20:35:37.748313') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE DATABASE "cartify_development" ENCODING = 'unicode'[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1967059775541629265)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(1967059775541629265)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1967059775541629265)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to EnableUuidExtension (20240101000000)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240101000000') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateStores (20240101000001)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE TABLE "stores" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "name" character varying NOT NULL, "slug" character varying NOT NULL, "low_stock_threshold" integer DEFAULT 10, "settings" jsonb DEFAULT '{}', "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_stores_on_slug" ON "stores" ("slug")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240101000001') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUsers (20240101000002)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE TABLE "users" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "email" character varying NOT NULL, "password_digest" character varying NOT NULL, "name" character varying NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240101000002') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateStoreMemberships (20240101000003)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE TABLE "store_memberships" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "store_id" uuid NOT NULL, "user_id" uuid NOT NULL, "role" character varying DEFAULT 'staff' NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_b8926c7154"
+FOREIGN KEY ("store_id")
+  REFERENCES "stores" ("id")
+, CONSTRAINT "fk_rails_ebe29bcfcd"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE INDEX "index_store_memberships_on_store_id" ON "store_memberships" ("store_id")[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE INDEX "index_store_memberships_on_user_id" ON "store_memberships" ("user_id")[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_store_memberships_on_store_id_and_user_id" ON "store_memberships" ("store_id", "user_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240101000003') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateProducts (20240101000004)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "products" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "store_id" uuid NOT NULL, "title" character varying NOT NULL, "description" text, "status" character varying DEFAULT 'draft', "product_type" character varying, "vendor" character varying, "metadata" jsonb DEFAULT '{}', "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_5cf8ff66a6"
+FOREIGN KEY ("store_id")
+  REFERENCES "stores" ("id")
+)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE INDEX "index_products_on_store_id" ON "products" ("store_id")[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE INDEX "index_products_on_store_id_and_status" ON "products" ("store_id", "status")[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE INDEX "index_products_on_store_id_and_title" ON "products" ("store_id", "title")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240101000004') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateVariants (20240101000005)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE TABLE "variants" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "product_id" uuid NOT NULL, "title" character varying NOT NULL, "sku" character varying, "price" decimal(10,2) DEFAULT 0.0 NOT NULL, "compare_at_price" decimal(10,2), "position" integer DEFAULT 0, "option_values" jsonb DEFAULT '{}', "requires_shipping" boolean DEFAULT TRUE, "weight" decimal(10,2), "weight_unit" character varying DEFAULT 'kg', "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_19f8efee69"
+FOREIGN KEY ("product_id")
+  REFERENCES "products" ("id")
+)[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE INDEX "index_variants_on_product_id" ON "variants" ("product_id")[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE INDEX "index_variants_on_sku" ON "variants" ("sku")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240101000005') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateLocations (20240101000006)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE TABLE "locations" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "store_id" uuid NOT NULL, "name" character varying NOT NULL, "address1" character varying, "address2" character varying, "city" character varying, "province" character varying, "country" character varying DEFAULT 'US', "zip" character varying, "active" boolean DEFAULT TRUE, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_1b2af14db2"
+FOREIGN KEY ("store_id")
+  REFERENCES "stores" ("id")
+)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE INDEX "index_locations_on_store_id" ON "locations" ("store_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240101000006') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateInventoryLevels (20240101000007)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE TABLE "inventory_levels" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "variant_id" uuid NOT NULL, "location_id" uuid NOT NULL, "available" integer DEFAULT 0 NOT NULL, "committed" integer DEFAULT 0 NOT NULL, "incoming" integer DEFAULT 0 NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_99a3ea35d3"
+FOREIGN KEY ("variant_id")
+  REFERENCES "variants" ("id")
+, CONSTRAINT "fk_rails_5137ba4713"
+FOREIGN KEY ("location_id")
+  REFERENCES "locations" ("id")
+)[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE INDEX "index_inventory_levels_on_variant_id" ON "inventory_levels" ("variant_id")[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE INDEX "index_inventory_levels_on_location_id" ON "inventory_levels" ("location_id")[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_inventory_levels_on_variant_id_and_location_id" ON "inventory_levels" ("variant_id", "location_id")[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE INDEX "index_inventory_levels_on_available" ON "inventory_levels" ("available")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240101000007') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateOrders (20240101000008)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "orders" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "store_id" uuid NOT NULL, "order_number" character varying NOT NULL, "email" character varying, "status" character varying DEFAULT 'pending', "fulfillment_status" character varying DEFAULT 'unfulfilled', "financial_status" character varying DEFAULT 'pending', "subtotal" decimal(10,2) DEFAULT 0.0, "total_tax" decimal(10,2) DEFAULT 0.0, "total_shipping" decimal(10,2) DEFAULT 0.0, "total_price" decimal(10,2) DEFAULT 0.0, "currency" character varying DEFAULT 'USD', "shipping_address" jsonb DEFAULT '{}', "billing_address" jsonb DEFAULT '{}', "idempotency_key" character varying, "note" text, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_f0be2fda72"
+FOREIGN KEY ("store_id")
+  REFERENCES "stores" ("id")
+)[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE INDEX "index_orders_on_store_id" ON "orders" ("store_id")[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_orders_on_idempotency_key" ON "orders" ("idempotency_key")[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_orders_on_store_id_and_order_number" ON "orders" ("store_id", "order_number")[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE INDEX "index_orders_on_store_id_and_status" ON "orders" ("store_id", "status")[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE INDEX "index_orders_on_store_id_and_fulfillment_status" ON "orders" ("store_id", "fulfillment_status")[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE INDEX "index_orders_on_created_at" ON "orders" ("created_at")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240101000008') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateLineItems (20240101000009)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE TABLE "line_items" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "order_id" uuid NOT NULL, "variant_id" uuid NOT NULL, "title" character varying NOT NULL, "variant_title" character varying, "sku" character varying, "quantity" integer DEFAULT 1 NOT NULL, "price" decimal(10,2) NOT NULL, "total_discount" decimal(10,2) DEFAULT 0.0, "requires_shipping" boolean DEFAULT TRUE, "fulfilled_quantity" integer DEFAULT 0, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_2dc2e5c22c"
+FOREIGN KEY ("order_id")
+  REFERENCES "orders" ("id")
+, CONSTRAINT "fk_rails_bbe6616cca"
+FOREIGN KEY ("variant_id")
+  REFERENCES "variants" ("id")
+)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE INDEX "index_line_items_on_order_id" ON "line_items" ("order_id")[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE INDEX "index_line_items_on_variant_id" ON "line_items" ("variant_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240101000009') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateFulfillments (20240101000010)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE TABLE "fulfillments" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "order_id" uuid NOT NULL, "location_id" uuid, "status" character varying DEFAULT 'pending', "tracking_company" character varying, "tracking_number" character varying, "tracking_url" character varying, "shipped_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_d5163a1bdc"
+FOREIGN KEY ("order_id")
+  REFERENCES "orders" ("id")
+, CONSTRAINT "fk_rails_15e23b3cdc"
+FOREIGN KEY ("location_id")
+  REFERENCES "locations" ("id")
+)[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE INDEX "index_fulfillments_on_order_id" ON "fulfillments" ("order_id")[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE INDEX "index_fulfillments_on_location_id" ON "fulfillments" ("location_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240101000010') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateAuditLogs (20240101000011)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE TABLE "audit_logs" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "store_id" uuid NOT NULL, "user_id" uuid, "action" character varying NOT NULL, "resource_type" character varying NOT NULL, "resource_id" uuid NOT NULL, "changes" jsonb DEFAULT '{}', "metadata" jsonb DEFAULT '{}', "ip_address" inet, "user_agent" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_97491dbcb8"
+FOREIGN KEY ("store_id")
+  REFERENCES "stores" ("id")
+, CONSTRAINT "fk_rails_1f26bc34ae"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE INDEX "index_audit_logs_on_store_id" ON "audit_logs" ("store_id")[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE INDEX "index_audit_logs_on_user_id" ON "audit_logs" ("user_id")[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE INDEX "index_audit_logs_on_store_id_and_resource_type_and_resource_id" ON "audit_logs" ("store_id", "resource_type", "resource_id")[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE INDEX "index_audit_logs_on_store_id_and_action" ON "audit_logs" ("store_id", "action")[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE INDEX "index_audit_logs_on_created_at" ON "audit_logs" ("created_at")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240101000011') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateInventoryAlerts (20240101000012)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE TABLE "inventory_alerts" ("id" uuid DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY, "store_id" uuid NOT NULL, "variant_id" uuid NOT NULL, "location_id" uuid NOT NULL, "threshold" integer NOT NULL, "current_level" integer NOT NULL, "reviewed" boolean DEFAULT FALSE, "reviewed_by_id" uuid, "reviewed_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_41ae87442e"
+FOREIGN KEY ("store_id")
+  REFERENCES "stores" ("id")
+, CONSTRAINT "fk_rails_eb9e1170d6"
+FOREIGN KEY ("variant_id")
+  REFERENCES "variants" ("id")
+, CONSTRAINT "fk_rails_460ab8a0b3"
+FOREIGN KEY ("location_id")
+  REFERENCES "locations" ("id")
+, CONSTRAINT "fk_rails_453d25856f"
+FOREIGN KEY ("reviewed_by_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE INDEX "index_inventory_alerts_on_store_id" ON "inventory_alerts" ("store_id")[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE INDEX "index_inventory_alerts_on_variant_id" ON "inventory_alerts" ("variant_id")[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE INDEX "index_inventory_alerts_on_location_id" ON "inventory_alerts" ("location_id")[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE INDEX "index_inventory_alerts_on_reviewed_by_id" ON "inventory_alerts" ("reviewed_by_id")[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE INDEX "index_inventory_alerts_on_store_id_and_reviewed" ON "inventory_alerts" ("store_id", "reviewed")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240101000012') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(1967059775541629265)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mStore Load (0.3ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."slug" = $1 LIMIT $2[0m  [["slug", "demo"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStore Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "stores" WHERE "stores"."slug" = $1 LIMIT $2[0m  [["slug", "demo"], ["LIMIT", 1]]
+  [1m[36mStore Create (0.3ms)[0m  [1m[32mINSERT INTO "stores" ("name", "slug", "low_stock_threshold", "settings", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Demo Store"], ["slug", "demo"], ["low_stock_threshold", 10], ["settings", "{}"], ["created_at", "2025-12-18 20:38:51.463187"], ["updated_at", "2025-12-18 20:38:51.463187"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "demo@cartify.dev"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "demo@cartify.dev"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["email", "demo@cartify.dev"], ["password_digest", "[FILTERED]"], ["name", "Demo User"], ["created_at", "2025-12-18 20:38:51.675449"], ["updated_at", "2025-12-18 20:38:51.675449"]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mStoreMembership Load (0.3ms)[0m  [1m[34mSELECT "store_memberships".* FROM "store_memberships" WHERE "store_memberships"."store_id" = $1 AND "store_memberships"."user_id" = $2 LIMIT $3[0m  [["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"], ["user_id", "c718ebc1-2e1c-44be-a43a-63da78056d61"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStoreMembership Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "store_memberships" WHERE "store_memberships"."user_id" = $1 AND "store_memberships"."store_id" = $2 LIMIT $3[0m  [["user_id", "c718ebc1-2e1c-44be-a43a-63da78056d61"], ["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"], ["LIMIT", 1]]
+  [1m[36mStoreMembership Create (0.4ms)[0m  [1m[32mINSERT INTO "store_memberships" ("store_id", "user_id", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"], ["user_id", "c718ebc1-2e1c-44be-a43a-63da78056d61"], ["role", "owner"], ["created_at", "2025-12-18 20:38:51.696344"], ["updated_at", "2025-12-18 20:38:51.696344"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.3ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."store_id" = $1 AND "locations"."name" = $2 LIMIT $3[0m  [["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"], ["name", "Main Warehouse"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mLocation Create (0.3ms)[0m  [1m[32mINSERT INTO "locations" ("store_id", "name", "address1", "address2", "city", "province", "country", "zip", "active", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"], ["name", "Main Warehouse"], ["address1", nil], ["address2", nil], ["city", "San Francisco"], ["province", "CA"], ["country", "US"], ["zip", nil], ["active", true], ["created_at", "2025-12-18 20:38:51.707433"], ["updated_at", "2025-12-18 20:38:51.707433"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."store_id" = $1 AND "locations"."name" = $2 LIMIT $3[0m  [["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"], ["name", "East Coast Fulfillment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mLocation Create (0.6ms)[0m  [1m[32mINSERT INTO "locations" ("store_id", "name", "address1", "address2", "city", "province", "country", "zip", "active", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"], ["name", "East Coast Fulfillment"], ["address1", nil], ["address2", nil], ["city", "New York"], ["province", "NY"], ["country", "US"], ["zip", nil], ["active", true], ["created_at", "2025-12-18 20:38:51.710292"], ["updated_at", "2025-12-18 20:38:51.710292"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."store_id" = $1 AND "products"."title" = $2 LIMIT $3[0m  [["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"], ["title", "Classic T-Shirt"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProduct Create (0.4ms)[0m  [1m[32mINSERT INTO "products" ("store_id", "title", "description", "status", "product_type", "vendor", "metadata", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"], ["title", "Classic T-Shirt"], ["description", "Comfortable cotton t-shirt"], ["status", "active"], ["product_type", "Apparel"], ["vendor", "Cartify Basics"], ["metadata", "{}"], ["created_at", "2025-12-18 20:38:51.720312"], ["updated_at", "2025-12-18 20:38:51.720312"]]
+  [1m[36mVariant Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "variants" WHERE "variants"."product_id" = $1 LIMIT $2[0m  [["product_id", "b0431498-cd88-4e8a-8b55-d2174677edad"], ["LIMIT", 1]]
+  ↳ app/models/product.rb:27:in `create_default_variant'
+  [1m[36mVariant Create (0.4ms)[0m  [1m[32mINSERT INTO "variants" ("product_id", "title", "sku", "price", "compare_at_price", "position", "option_values", "requires_shipping", "weight", "weight_unit", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["product_id", "b0431498-cd88-4e8a-8b55-d2174677edad"], ["title", "Default"], ["sku", nil], ["price", "0.0"], ["compare_at_price", nil], ["position", 0], ["option_values", "{}"], ["requires_shipping", true], ["weight", nil], ["weight_unit", "kg"], ["created_at", "2025-12-18 20:38:51.739649"], ["updated_at", "2025-12-18 20:38:51.739649"]]
+  ↳ app/models/product.rb:27:in `create_default_variant'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mVariant Load (0.1ms)[0m  [1m[34mSELECT "variants".* FROM "variants" WHERE "variants"."product_id" = $1 AND "variants"."sku" = $2 LIMIT $3[0m  [["product_id", "b0431498-cd88-4e8a-8b55-d2174677edad"], ["sku", "TS-S"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVariant Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "variants" WHERE "variants"."sku" = $1 AND "variants"."product_id" = $2 LIMIT $3[0m  [["sku", "TS-S"], ["product_id", "b0431498-cd88-4e8a-8b55-d2174677edad"], ["LIMIT", 1]]
+  [1m[36mVariant Create (0.2ms)[0m  [1m[32mINSERT INTO "variants" ("product_id", "title", "sku", "price", "compare_at_price", "position", "option_values", "requires_shipping", "weight", "weight_unit", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["product_id", "b0431498-cd88-4e8a-8b55-d2174677edad"], ["title", "Small"], ["sku", "TS-S"], ["price", "29.99"], ["compare_at_price", nil], ["position", 0], ["option_values", "{}"], ["requires_shipping", true], ["weight", nil], ["weight_unit", "kg"], ["created_at", "2025-12-18 20:38:51.743204"], ["updated_at", "2025-12-18 20:38:51.743204"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mInventoryLevel Load (0.3ms)[0m  [1m[34mSELECT "inventory_levels".* FROM "inventory_levels" WHERE "inventory_levels"."variant_id" = $1 AND "inventory_levels"."location_id" = $2 LIMIT $3[0m  [["variant_id", "0656c5a9-e660-4abd-8c8c-f55a4d6cf641"], ["location_id", "32f05b3b-2023-422b-a313-c2b0691ecf04"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInventoryLevel Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "inventory_levels" WHERE "inventory_levels"."variant_id" = $1 AND "inventory_levels"."location_id" = $2 LIMIT $3[0m  [["variant_id", "0656c5a9-e660-4abd-8c8c-f55a4d6cf641"], ["location_id", "32f05b3b-2023-422b-a313-c2b0691ecf04"], ["LIMIT", 1]]
+  [1m[36mInventoryLevel Create (0.3ms)[0m  [1m[32mINSERT INTO "inventory_levels" ("variant_id", "location_id", "available", "committed", "incoming", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["variant_id", "0656c5a9-e660-4abd-8c8c-f55a4d6cf641"], ["location_id", "32f05b3b-2023-422b-a313-c2b0691ecf04"], ["available", 15], ["committed", 0], ["incoming", 0], ["created_at", "2025-12-18 20:38:51.753266"], ["updated_at", "2025-12-18 20:38:51.753266"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mInventoryLevel Load (0.1ms)[0m  [1m[34mSELECT "inventory_levels".* FROM "inventory_levels" WHERE "inventory_levels"."variant_id" = $1 AND "inventory_levels"."location_id" = $2 LIMIT $3[0m  [["variant_id", "0656c5a9-e660-4abd-8c8c-f55a4d6cf641"], ["location_id", "fb15f959-c55d-42ac-9d49-bf684c32ec63"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInventoryLevel Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "inventory_levels" WHERE "inventory_levels"."variant_id" = $1 AND "inventory_levels"."location_id" = $2 LIMIT $3[0m  [["variant_id", "0656c5a9-e660-4abd-8c8c-f55a4d6cf641"], ["location_id", "fb15f959-c55d-42ac-9d49-bf684c32ec63"], ["LIMIT", 1]]
+  [1m[36mInventoryLevel Create (0.1ms)[0m  [1m[32mINSERT INTO "inventory_levels" ("variant_id", "location_id", "available", "committed", "incoming", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["variant_id", "0656c5a9-e660-4abd-8c8c-f55a4d6cf641"], ["location_id", "fb15f959-c55d-42ac-9d49-bf684c32ec63"], ["available", 29], ["committed", 0], ["incoming", 0], ["created_at", "2025-12-18 20:38:51.756514"], ["updated_at", "2025-12-18 20:38:51.756514"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mVariant Load (0.1ms)[0m  [1m[34mSELECT "variants".* FROM "variants" WHERE "variants"."product_id" = $1 AND "variants"."sku" = $2 LIMIT $3[0m  [["product_id", "b0431498-cd88-4e8a-8b55-d2174677edad"], ["sku", "TS-M"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVariant Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "variants" WHERE "variants"."sku" = $1 AND "variants"."product_id" = $2 LIMIT $3[0m  [["sku", "TS-M"], ["product_id", "b0431498-cd88-4e8a-8b55-d2174677edad"], ["LIMIT", 1]]
+  [1m[36mVariant Create (0.2ms)[0m  [1m[32mINSERT INTO "variants" ("product_id", "title", "sku", "price", "compare_at_price", "position", "option_values", "requires_shipping", "weight", "weight_unit", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["product_id", "b0431498-cd88-4e8a-8b55-d2174677edad"], ["title", "Medium"], ["sku", "TS-M"], ["price", "29.99"], ["compare_at_price", nil], ["position", 0], ["option_values", "{}"], ["requires_shipping", true], ["weight", nil], ["weight_unit", "kg"], ["created_at", "2025-12-18 20:38:51.759780"], ["updated_at", "2025-12-18 20:38:51.759780"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mInventoryLevel Load (0.1ms)[0m  [1m[34mSELECT "inventory_levels".* FROM "inventory_levels" WHERE "inventory_levels"."variant_id" = $1 AND "inventory_levels"."location_id" = $2 LIMIT $3[0m  [["variant_id", "c3def276-4d66-4ca2-8f97-5e21c6e20ae9"], ["location_id", "32f05b3b-2023-422b-a313-c2b0691ecf04"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInventoryLevel Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "inventory_levels" WHERE "inventory_levels"."variant_id" = $1 AND "inventory_levels"."location_id" = $2 LIMIT $3[0m  [["variant_id", "c3def276-4d66-4ca2-8f97-5e21c6e20ae9"], ["location_id", "32f05b3b-2023-422b-a313-c2b0691ecf04"], ["LIMIT", 1]]
+  [1m[36mInventoryLevel Create (0.1ms)[0m  [1m[32mINSERT INTO "inventory_levels" ("variant_id", "location_id", "available", "committed", "incoming", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["variant_id", "c3def276-4d66-4ca2-8f97-5e21c6e20ae9"], ["location_id", "32f05b3b-2023-422b-a313-c2b0691ecf04"], ["available", 9], ["committed", 0], ["incoming", 0], ["created_at", "2025-12-18 20:38:51.762937"], ["updated_at", "2025-12-18 20:38:51.762937"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mInventoryLevel Load (0.1ms)[0m  [1m[34mSELECT "inventory_levels".* FROM "inventory_levels" WHERE "inventory_levels"."variant_id" = $1 AND "inventory_levels"."location_id" = $2 LIMIT $3[0m  [["variant_id", "c3def276-4d66-4ca2-8f97-5e21c6e20ae9"], ["location_id", "fb15f959-c55d-42ac-9d49-bf684c32ec63"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInventoryLevel Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "inventory_levels" WHERE "inventory_levels"."variant_id" = $1 AND "inventory_levels"."location_id" = $2 LIMIT $3[0m  [["variant_id", "c3def276-4d66-4ca2-8f97-5e21c6e20ae9"], ["location_id", "fb15f959-c55d-42ac-9d49-bf684c32ec63"], ["LIMIT", 1]]
+  [1m[36mInventoryLevel Create (0.1ms)[0m  [1m[32mINSERT INTO "inventory_levels" ("variant_id", "location_id", "available", "committed", "incoming", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["variant_id", "c3def276-4d66-4ca2-8f97-5e21c6e20ae9"], ["location_id", "fb15f959-c55d-42ac-9d49-bf684c32ec63"], ["available", 44], ["committed", 0], ["incoming", 0], ["created_at", "2025-12-18 20:38:51.765595"], ["updated_at", "2025-12-18 20:38:51.765595"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mVariant Load (0.1ms)[0m  [1m[34mSELECT "variants".* FROM "variants" WHERE "variants"."product_id" = $1 AND "variants"."sku" = $2 LIMIT $3[0m  [["product_id", "b0431498-cd88-4e8a-8b55-d2174677edad"], ["sku", "TS-L"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVariant Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "variants" WHERE "variants"."sku" = $1 AND "variants"."product_id" = $2 LIMIT $3[0m  [["sku", "TS-L"], ["product_id", "b0431498-cd88-4e8a-8b55-d2174677edad"], ["LIMIT", 1]]
+  [1m[36mVariant Create (0.2ms)[0m  [1m[32mINSERT INTO "variants" ("product_id", "title", "sku", "price", "compare_at_price", "position", "option_values", "requires_shipping", "weight", "weight_unit", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["product_id", "b0431498-cd88-4e8a-8b55-d2174677edad"], ["title", "Large"], ["sku", "TS-L"], ["price", "29.99"], ["compare_at_price", nil], ["position", 0], ["option_values", "{}"], ["requires_shipping", true], ["weight", nil], ["weight_unit", "kg"], ["created_at", "2025-12-18 20:38:51.768241"], ["updated_at", "2025-12-18 20:38:51.768241"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mInventoryLevel Load (0.1ms)[0m  [1m[34mSELECT "inventory_levels".* FROM "inventory_levels" WHERE "inventory_levels"."variant_id" = $1 AND "inventory_levels"."location_id" = $2 LIMIT $3[0m  [["variant_id", "eb7c5f9c-792f-4336-9522-687705d9661c"], ["location_id", "32f05b3b-2023-422b-a313-c2b0691ecf04"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInventoryLevel Exists? (3.4ms)[0m  [1m[34mSELECT 1 AS one FROM "inventory_levels" WHERE "inventory_levels"."variant_id" = $1 AND "inventory_levels"."location_id" = $2 LIMIT $3[0m  [["variant_id", "eb7c5f9c-792f-4336-9522-687705d9661c"], ["location_id", "32f05b3b-2023-422b-a313-c2b0691ecf04"], ["LIMIT", 1]]
+  [1m[36mInventoryLevel Create (0.2ms)[0m  [1m[32mINSERT INTO "inventory_levels" ("variant_id", "location_id", "available", "committed", "incoming", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["variant_id", "eb7c5f9c-792f-4336-9522-687705d9661c"], ["location_id", "32f05b3b-2023-422b-a313-c2b0691ecf04"], ["available", 29], ["committed", 0], ["incoming", 0], ["created_at", "2025-12-18 20:38:51.774270"], ["updated_at", "2025-12-18 20:38:51.774270"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mInventoryLevel Load (0.1ms)[0m  [1m[34mSELECT "inventory_levels".* FROM "inventory_levels" WHERE "inventory_levels"."variant_id" = $1 AND "inventory_levels"."location_id" = $2 LIMIT $3[0m  [["variant_id", "eb7c5f9c-792f-4336-9522-687705d9661c"], ["location_id", "fb15f959-c55d-42ac-9d49-bf684c32ec63"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInventoryLevel Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "inventory_levels" WHERE "inventory_levels"."variant_id" = $1 AND "inventory_levels"."location_id" = $2 LIMIT $3[0m  [["variant_id", "eb7c5f9c-792f-4336-9522-687705d9661c"], ["location_id", "fb15f959-c55d-42ac-9d49-bf684c32ec63"], ["LIMIT", 1]]
+  [1m[36mInventoryLevel Create (0.2ms)[0m  [1m[32mINSERT INTO "inventory_levels" ("variant_id", "location_id", "available", "committed", "incoming", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["variant_id", "eb7c5f9c-792f-4336-9522-687705d9661c"], ["location_id", "fb15f959-c55d-42ac-9d49-bf684c32ec63"], ["available", 39], ["committed", 0], ["incoming", 0], ["created_at", "2025-12-18 20:38:51.777822"], ["updated_at", "2025-12-18 20:38:51.777822"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."store_id" = $1 AND "products"."title" = $2 LIMIT $3[0m  [["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"], ["title", "Premium Hoodie"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProduct Create (0.5ms)[0m  [1m[32mINSERT INTO "products" ("store_id", "title", "description", "status", "product_type", "vendor", "metadata", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"], ["title", "Premium Hoodie"], ["description", "Warm and cozy hoodie"], ["status", "active"], ["product_type", "Apparel"], ["vendor", "Cartify Basics"], ["metadata", "{}"], ["created_at", "2025-12-18 20:38:51.780225"], ["updated_at", "2025-12-18 20:38:51.780225"]]
+  [1m[36mVariant Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "variants" WHERE "variants"."product_id" = $1 LIMIT $2[0m  [["product_id", "7d42cd5f-183a-464c-b140-fe2813832106"], ["LIMIT", 1]]
+  ↳ app/models/product.rb:27:in `create_default_variant'
+  [1m[36mVariant Create (0.1ms)[0m  [1m[32mINSERT INTO "variants" ("product_id", "title", "sku", "price", "compare_at_price", "position", "option_values", "requires_shipping", "weight", "weight_unit", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["product_id", "7d42cd5f-183a-464c-b140-fe2813832106"], ["title", "Default"], ["sku", nil], ["price", "0.0"], ["compare_at_price", nil], ["position", 0], ["option_values", "{}"], ["requires_shipping", true], ["weight", nil], ["weight_unit", "kg"], ["created_at", "2025-12-18 20:38:51.782046"], ["updated_at", "2025-12-18 20:38:51.782046"]]
+  ↳ app/models/product.rb:27:in `create_default_variant'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mVariant Load (0.1ms)[0m  [1m[34mSELECT "variants".* FROM "variants" WHERE "variants"."product_id" = $1 AND "variants"."sku" = $2 LIMIT $3[0m  [["product_id", "7d42cd5f-183a-464c-b140-fe2813832106"], ["sku", "HD-S"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVariant Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "variants" WHERE "variants"."sku" = $1 AND "variants"."product_id" = $2 LIMIT $3[0m  [["sku", "HD-S"], ["product_id", "7d42cd5f-183a-464c-b140-fe2813832106"], ["LIMIT", 1]]
+  [1m[36mVariant Create (0.2ms)[0m  [1m[32mINSERT INTO "variants" ("product_id", "title", "sku", "price", "compare_at_price", "position", "option_values", "requires_shipping", "weight", "weight_unit", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["product_id", "7d42cd5f-183a-464c-b140-fe2813832106"], ["title", "Small"], ["sku", "HD-S"], ["price", "59.99"], ["compare_at_price", nil], ["position", 0], ["option_values", "{}"], ["requires_shipping", true], ["weight", nil], ["weight_unit", "kg"], ["created_at", "2025-12-18 20:38:51.784985"], ["updated_at", "2025-12-18 20:38:51.784985"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mInventoryLevel Load (0.1ms)[0m  [1m[34mSELECT "inventory_levels".* FROM "inventory_levels" WHERE "inventory_levels"."variant_id" = $1 AND "inventory_levels"."location_id" = $2 LIMIT $3[0m  [["variant_id", "919cf42b-afd3-49ec-ae03-5e70d17c4959"], ["location_id", "32f05b3b-2023-422b-a313-c2b0691ecf04"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInventoryLevel Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "inventory_levels" WHERE "inventory_levels"."variant_id" = $1 AND "inventory_levels"."location_id" = $2 LIMIT $3[0m  [["variant_id", "919cf42b-afd3-49ec-ae03-5e70d17c4959"], ["location_id", "32f05b3b-2023-422b-a313-c2b0691ecf04"], ["LIMIT", 1]]
+  [1m[36mInventoryLevel Create (0.1ms)[0m  [1m[32mINSERT INTO "inventory_levels" ("variant_id", "location_id", "available", "committed", "incoming", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["variant_id", "919cf42b-afd3-49ec-ae03-5e70d17c4959"], ["location_id", "32f05b3b-2023-422b-a313-c2b0691ecf04"], ["available", 50], ["committed", 0], ["incoming", 0], ["created_at", "2025-12-18 20:38:51.788362"], ["updated_at", "2025-12-18 20:38:51.788362"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mInventoryLevel Load (0.1ms)[0m  [1m[34mSELECT "inventory_levels".* FROM "inventory_levels" WHERE "inventory_levels"."variant_id" = $1 AND "inventory_levels"."location_id" = $2 LIMIT $3[0m  [["variant_id", "919cf42b-afd3-49ec-ae03-5e70d17c4959"], ["location_id", "fb15f959-c55d-42ac-9d49-bf684c32ec63"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInventoryLevel Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "inventory_levels" WHERE "inventory_levels"."variant_id" = $1 AND "inventory_levels"."location_id" = $2 LIMIT $3[0m  [["variant_id", "919cf42b-afd3-49ec-ae03-5e70d17c4959"], ["location_id", "fb15f959-c55d-42ac-9d49-bf684c32ec63"], ["LIMIT", 1]]
+  [1m[36mInventoryLevel Create (0.1ms)[0m  [1m[32mINSERT INTO "inventory_levels" ("variant_id", "location_id", "available", "committed", "incoming", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["variant_id", "919cf42b-afd3-49ec-ae03-5e70d17c4959"], ["location_id", "fb15f959-c55d-42ac-9d49-bf684c32ec63"], ["available", 56], ["committed", 0], ["incoming", 0], ["created_at", "2025-12-18 20:38:51.791052"], ["updated_at", "2025-12-18 20:38:51.791052"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mVariant Load (0.1ms)[0m  [1m[34mSELECT "variants".* FROM "variants" WHERE "variants"."product_id" = $1 AND "variants"."sku" = $2 LIMIT $3[0m  [["product_id", "7d42cd5f-183a-464c-b140-fe2813832106"], ["sku", "HD-M"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVariant Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "variants" WHERE "variants"."sku" = $1 AND "variants"."product_id" = $2 LIMIT $3[0m  [["sku", "HD-M"], ["product_id", "7d42cd5f-183a-464c-b140-fe2813832106"], ["LIMIT", 1]]
+  [1m[36mVariant Create (0.2ms)[0m  [1m[32mINSERT INTO "variants" ("product_id", "title", "sku", "price", "compare_at_price", "position", "option_values", "requires_shipping", "weight", "weight_unit", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["product_id", "7d42cd5f-183a-464c-b140-fe2813832106"], ["title", "Medium"], ["sku", "HD-M"], ["price", "59.99"], ["compare_at_price", nil], ["position", 0], ["option_values", "{}"], ["requires_shipping", true], ["weight", nil], ["weight_unit", "kg"], ["created_at", "2025-12-18 20:38:51.793996"], ["updated_at", "2025-12-18 20:38:51.793996"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mInventoryLevel Load (0.1ms)[0m  [1m[34mSELECT "inventory_levels".* FROM "inventory_levels" WHERE "inventory_levels"."variant_id" = $1 AND "inventory_levels"."location_id" = $2 LIMIT $3[0m  [["variant_id", "63d54d9b-c960-47c4-813d-03db5bc1340b"], ["location_id", "32f05b3b-2023-422b-a313-c2b0691ecf04"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInventoryLevel Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "inventory_levels" WHERE "inventory_levels"."variant_id" = $1 AND "inventory_levels"."location_id" = $2 LIMIT $3[0m  [["variant_id", "63d54d9b-c960-47c4-813d-03db5bc1340b"], ["location_id", "32f05b3b-2023-422b-a313-c2b0691ecf04"], ["LIMIT", 1]]
+  [1m[36mInventoryLevel Create (0.1ms)[0m  [1m[32mINSERT INTO "inventory_levels" ("variant_id", "location_id", "available", "committed", "incoming", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["variant_id", "63d54d9b-c960-47c4-813d-03db5bc1340b"], ["location_id", "32f05b3b-2023-422b-a313-c2b0691ecf04"], ["available", 47], ["committed", 0], ["incoming", 0], ["created_at", "2025-12-18 20:38:51.797374"], ["updated_at", "2025-12-18 20:38:51.797374"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mInventoryLevel Load (0.1ms)[0m  [1m[34mSELECT "inventory_levels".* FROM "inventory_levels" WHERE "inventory_levels"."variant_id" = $1 AND "inventory_levels"."location_id" = $2 LIMIT $3[0m  [["variant_id", "63d54d9b-c960-47c4-813d-03db5bc1340b"], ["location_id", "fb15f959-c55d-42ac-9d49-bf684c32ec63"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInventoryLevel Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "inventory_levels" WHERE "inventory_levels"."variant_id" = $1 AND "inventory_levels"."location_id" = $2 LIMIT $3[0m  [["variant_id", "63d54d9b-c960-47c4-813d-03db5bc1340b"], ["location_id", "fb15f959-c55d-42ac-9d49-bf684c32ec63"], ["LIMIT", 1]]
+  [1m[36mInventoryLevel Create (0.1ms)[0m  [1m[32mINSERT INTO "inventory_levels" ("variant_id", "location_id", "available", "committed", "incoming", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["variant_id", "63d54d9b-c960-47c4-813d-03db5bc1340b"], ["location_id", "fb15f959-c55d-42ac-9d49-bf684c32ec63"], ["available", 53], ["committed", 0], ["incoming", 0], ["created_at", "2025-12-18 20:38:51.799992"], ["updated_at", "2025-12-18 20:38:51.799992"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mVariant Load (0.1ms)[0m  [1m[34mSELECT "variants".* FROM "variants" WHERE "variants"."product_id" = $1 AND "variants"."sku" = $2 LIMIT $3[0m  [["product_id", "7d42cd5f-183a-464c-b140-fe2813832106"], ["sku", "HD-L"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVariant Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "variants" WHERE "variants"."sku" = $1 AND "variants"."product_id" = $2 LIMIT $3[0m  [["sku", "HD-L"], ["product_id", "7d42cd5f-183a-464c-b140-fe2813832106"], ["LIMIT", 1]]
+  [1m[36mVariant Create (0.1ms)[0m  [1m[32mINSERT INTO "variants" ("product_id", "title", "sku", "price", "compare_at_price", "position", "option_values", "requires_shipping", "weight", "weight_unit", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["product_id", "7d42cd5f-183a-464c-b140-fe2813832106"], ["title", "Large"], ["sku", "HD-L"], ["price", "59.99"], ["compare_at_price", nil], ["position", 0], ["option_values", "{}"], ["requires_shipping", true], ["weight", nil], ["weight_unit", "kg"], ["created_at", "2025-12-18 20:38:51.803048"], ["updated_at", "2025-12-18 20:38:51.803048"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mInventoryLevel Load (0.1ms)[0m  [1m[34mSELECT "inventory_levels".* FROM "inventory_levels" WHERE "inventory_levels"."variant_id" = $1 AND "inventory_levels"."location_id" = $2 LIMIT $3[0m  [["variant_id", "557a355a-7d82-40d3-b2b2-c4e343aa46c4"], ["location_id", "32f05b3b-2023-422b-a313-c2b0691ecf04"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInventoryLevel Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "inventory_levels" WHERE "inventory_levels"."variant_id" = $1 AND "inventory_levels"."location_id" = $2 LIMIT $3[0m  [["variant_id", "557a355a-7d82-40d3-b2b2-c4e343aa46c4"], ["location_id", "32f05b3b-2023-422b-a313-c2b0691ecf04"], ["LIMIT", 1]]
+  [1m[36mInventoryLevel Create (0.1ms)[0m  [1m[32mINSERT INTO "inventory_levels" ("variant_id", "location_id", "available", "committed", "incoming", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["variant_id", "557a355a-7d82-40d3-b2b2-c4e343aa46c4"], ["location_id", "32f05b3b-2023-422b-a313-c2b0691ecf04"], ["available", 89], ["committed", 0], ["incoming", 0], ["created_at", "2025-12-18 20:38:51.806159"], ["updated_at", "2025-12-18 20:38:51.806159"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mInventoryLevel Load (0.1ms)[0m  [1m[34mSELECT "inventory_levels".* FROM "inventory_levels" WHERE "inventory_levels"."variant_id" = $1 AND "inventory_levels"."location_id" = $2 LIMIT $3[0m  [["variant_id", "557a355a-7d82-40d3-b2b2-c4e343aa46c4"], ["location_id", "fb15f959-c55d-42ac-9d49-bf684c32ec63"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInventoryLevel Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "inventory_levels" WHERE "inventory_levels"."variant_id" = $1 AND "inventory_levels"."location_id" = $2 LIMIT $3[0m  [["variant_id", "557a355a-7d82-40d3-b2b2-c4e343aa46c4"], ["location_id", "fb15f959-c55d-42ac-9d49-bf684c32ec63"], ["LIMIT", 1]]
+  [1m[36mInventoryLevel Create (0.1ms)[0m  [1m[32mINSERT INTO "inventory_levels" ("variant_id", "location_id", "available", "committed", "incoming", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["variant_id", "557a355a-7d82-40d3-b2b2-c4e343aa46c4"], ["location_id", "fb15f959-c55d-42ac-9d49-bf684c32ec63"], ["available", 30], ["committed", 0], ["incoming", 0], ["created_at", "2025-12-18 20:38:51.808654"], ["updated_at", "2025-12-18 20:38:51.808654"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."store_id" = $1 AND "products"."title" = $2 LIMIT $3[0m  [["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"], ["title", "Coffee Mug"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProduct Create (0.6ms)[0m  [1m[32mINSERT INTO "products" ("store_id", "title", "description", "status", "product_type", "vendor", "metadata", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"], ["title", "Coffee Mug"], ["description", "12oz ceramic mug"], ["status", "active"], ["product_type", "Accessories"], ["vendor", "Cartify Home"], ["metadata", "{}"], ["created_at", "2025-12-18 20:38:51.810467"], ["updated_at", "2025-12-18 20:38:51.810467"]]
+  [1m[36mVariant Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "variants" WHERE "variants"."product_id" = $1 LIMIT $2[0m  [["product_id", "3de9a7d7-23ee-45db-8065-92d04b75d30b"], ["LIMIT", 1]]
+  ↳ app/models/product.rb:27:in `create_default_variant'
+  [1m[36mVariant Create (0.1ms)[0m  [1m[32mINSERT INTO "variants" ("product_id", "title", "sku", "price", "compare_at_price", "position", "option_values", "requires_shipping", "weight", "weight_unit", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["product_id", "3de9a7d7-23ee-45db-8065-92d04b75d30b"], ["title", "Default"], ["sku", nil], ["price", "0.0"], ["compare_at_price", nil], ["position", 0], ["option_values", "{}"], ["requires_shipping", true], ["weight", nil], ["weight_unit", "kg"], ["created_at", "2025-12-18 20:38:51.812502"], ["updated_at", "2025-12-18 20:38:51.812502"]]
+  ↳ app/models/product.rb:27:in `create_default_variant'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mVariant Load (0.1ms)[0m  [1m[34mSELECT "variants".* FROM "variants" WHERE "variants"."product_id" = $1 AND "variants"."sku" = $2 LIMIT $3[0m  [["product_id", "3de9a7d7-23ee-45db-8065-92d04b75d30b"], ["sku", "COFFEE"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVariant Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "variants" WHERE "variants"."sku" = $1 AND "variants"."product_id" = $2 LIMIT $3[0m  [["sku", "COFFEE"], ["product_id", "3de9a7d7-23ee-45db-8065-92d04b75d30b"], ["LIMIT", 1]]
+  [1m[36mVariant Create (0.1ms)[0m  [1m[32mINSERT INTO "variants" ("product_id", "title", "sku", "price", "compare_at_price", "position", "option_values", "requires_shipping", "weight", "weight_unit", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["product_id", "3de9a7d7-23ee-45db-8065-92d04b75d30b"], ["title", "Default"], ["sku", "COFFEE"], ["price", "30.0"], ["compare_at_price", nil], ["position", 0], ["option_values", "{}"], ["requires_shipping", true], ["weight", nil], ["weight_unit", "kg"], ["created_at", "2025-12-18 20:38:51.816389"], ["updated_at", "2025-12-18 20:38:51.816389"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mInventoryLevel Load (0.1ms)[0m  [1m[34mSELECT "inventory_levels".* FROM "inventory_levels" WHERE "inventory_levels"."variant_id" = $1 AND "inventory_levels"."location_id" = $2 LIMIT $3[0m  [["variant_id", "088251d6-b088-4971-8a93-98431a2c5ef3"], ["location_id", "32f05b3b-2023-422b-a313-c2b0691ecf04"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInventoryLevel Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "inventory_levels" WHERE "inventory_levels"."variant_id" = $1 AND "inventory_levels"."location_id" = $2 LIMIT $3[0m  [["variant_id", "088251d6-b088-4971-8a93-98431a2c5ef3"], ["location_id", "32f05b3b-2023-422b-a313-c2b0691ecf04"], ["LIMIT", 1]]
+  [1m[36mInventoryLevel Create (0.3ms)[0m  [1m[32mINSERT INTO "inventory_levels" ("variant_id", "location_id", "available", "committed", "incoming", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["variant_id", "088251d6-b088-4971-8a93-98431a2c5ef3"], ["location_id", "32f05b3b-2023-422b-a313-c2b0691ecf04"], ["available", 98], ["committed", 0], ["incoming", 0], ["created_at", "2025-12-18 20:38:51.820596"], ["updated_at", "2025-12-18 20:38:51.820596"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mInventoryLevel Load (0.1ms)[0m  [1m[34mSELECT "inventory_levels".* FROM "inventory_levels" WHERE "inventory_levels"."variant_id" = $1 AND "inventory_levels"."location_id" = $2 LIMIT $3[0m  [["variant_id", "088251d6-b088-4971-8a93-98431a2c5ef3"], ["location_id", "fb15f959-c55d-42ac-9d49-bf684c32ec63"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInventoryLevel Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "inventory_levels" WHERE "inventory_levels"."variant_id" = $1 AND "inventory_levels"."location_id" = $2 LIMIT $3[0m  [["variant_id", "088251d6-b088-4971-8a93-98431a2c5ef3"], ["location_id", "fb15f959-c55d-42ac-9d49-bf684c32ec63"], ["LIMIT", 1]]
+  [1m[36mInventoryLevel Create (0.1ms)[0m  [1m[32mINSERT INTO "inventory_levels" ("variant_id", "location_id", "available", "committed", "incoming", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["variant_id", "088251d6-b088-4971-8a93-98431a2c5ef3"], ["location_id", "fb15f959-c55d-42ac-9d49-bf684c32ec63"], ["available", 65], ["committed", 0], ["incoming", 0], ["created_at", "2025-12-18 20:38:51.824224"], ["updated_at", "2025-12-18 20:38:51.824224"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."store_id" = $1 AND "products"."title" = $2 LIMIT $3[0m  [["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"], ["title", "Laptop Sleeve"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProduct Create (0.7ms)[0m  [1m[32mINSERT INTO "products" ("store_id", "title", "description", "status", "product_type", "vendor", "metadata", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"], ["title", "Laptop Sleeve"], ["description", "Protective laptop sleeve"], ["status", "active"], ["product_type", "Tech"], ["vendor", "Cartify Tech"], ["metadata", "{}"], ["created_at", "2025-12-18 20:38:51.826105"], ["updated_at", "2025-12-18 20:38:51.826105"]]
+  [1m[36mVariant Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "variants" WHERE "variants"."product_id" = $1 LIMIT $2[0m  [["product_id", "660e66ed-4f30-49a6-a89b-43e848fb86e8"], ["LIMIT", 1]]
+  ↳ app/models/product.rb:27:in `create_default_variant'
+  [1m[36mVariant Create (0.2ms)[0m  [1m[32mINSERT INTO "variants" ("product_id", "title", "sku", "price", "compare_at_price", "position", "option_values", "requires_shipping", "weight", "weight_unit", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["product_id", "660e66ed-4f30-49a6-a89b-43e848fb86e8"], ["title", "Default"], ["sku", nil], ["price", "0.0"], ["compare_at_price", nil], ["position", 0], ["option_values", "{}"], ["requires_shipping", true], ["weight", nil], ["weight_unit", "kg"], ["created_at", "2025-12-18 20:38:51.828824"], ["updated_at", "2025-12-18 20:38:51.828824"]]
+  ↳ app/models/product.rb:27:in `create_default_variant'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mVariant Load (0.1ms)[0m  [1m[34mSELECT "variants".* FROM "variants" WHERE "variants"."product_id" = $1 AND "variants"."sku" = $2 LIMIT $3[0m  [["product_id", "660e66ed-4f30-49a6-a89b-43e848fb86e8"], ["sku", "LAPTOP"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVariant Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "variants" WHERE "variants"."sku" = $1 AND "variants"."product_id" = $2 LIMIT $3[0m  [["sku", "LAPTOP"], ["product_id", "660e66ed-4f30-49a6-a89b-43e848fb86e8"], ["LIMIT", 1]]
+  [1m[36mVariant Create (0.1ms)[0m  [1m[32mINSERT INTO "variants" ("product_id", "title", "sku", "price", "compare_at_price", "position", "option_values", "requires_shipping", "weight", "weight_unit", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["product_id", "660e66ed-4f30-49a6-a89b-43e848fb86e8"], ["title", "Default"], ["sku", "LAPTOP"], ["price", "15.0"], ["compare_at_price", nil], ["position", 0], ["option_values", "{}"], ["requires_shipping", true], ["weight", nil], ["weight_unit", "kg"], ["created_at", "2025-12-18 20:38:51.832285"], ["updated_at", "2025-12-18 20:38:51.832285"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mInventoryLevel Load (0.1ms)[0m  [1m[34mSELECT "inventory_levels".* FROM "inventory_levels" WHERE "inventory_levels"."variant_id" = $1 AND "inventory_levels"."location_id" = $2 LIMIT $3[0m  [["variant_id", "c723a880-1970-4526-abbb-280884581b99"], ["location_id", "32f05b3b-2023-422b-a313-c2b0691ecf04"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInventoryLevel Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "inventory_levels" WHERE "inventory_levels"."variant_id" = $1 AND "inventory_levels"."location_id" = $2 LIMIT $3[0m  [["variant_id", "c723a880-1970-4526-abbb-280884581b99"], ["location_id", "32f05b3b-2023-422b-a313-c2b0691ecf04"], ["LIMIT", 1]]
+  [1m[36mInventoryLevel Create (0.2ms)[0m  [1m[32mINSERT INTO "inventory_levels" ("variant_id", "location_id", "available", "committed", "incoming", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["variant_id", "c723a880-1970-4526-abbb-280884581b99"], ["location_id", "32f05b3b-2023-422b-a313-c2b0691ecf04"], ["available", 23], ["committed", 0], ["incoming", 0], ["created_at", "2025-12-18 20:38:51.835201"], ["updated_at", "2025-12-18 20:38:51.835201"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mInventoryLevel Load (0.1ms)[0m  [1m[34mSELECT "inventory_levels".* FROM "inventory_levels" WHERE "inventory_levels"."variant_id" = $1 AND "inventory_levels"."location_id" = $2 LIMIT $3[0m  [["variant_id", "c723a880-1970-4526-abbb-280884581b99"], ["location_id", "fb15f959-c55d-42ac-9d49-bf684c32ec63"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInventoryLevel Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "inventory_levels" WHERE "inventory_levels"."variant_id" = $1 AND "inventory_levels"."location_id" = $2 LIMIT $3[0m  [["variant_id", "c723a880-1970-4526-abbb-280884581b99"], ["location_id", "fb15f959-c55d-42ac-9d49-bf684c32ec63"], ["LIMIT", 1]]
+  [1m[36mInventoryLevel Create (0.1ms)[0m  [1m[32mINSERT INTO "inventory_levels" ("variant_id", "location_id", "available", "committed", "incoming", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["variant_id", "c723a880-1970-4526-abbb-280884581b99"], ["location_id", "fb15f959-c55d-42ac-9d49-bf684c32ec63"], ["available", 95], ["committed", 0], ["incoming", 0], ["created_at", "2025-12-18 20:38:51.838420"], ["updated_at", "2025-12-18 20:38:51.838420"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."store_id" = $1 AND "products"."title" = $2 LIMIT $3[0m  [["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"], ["title", "Notebook"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProduct Create (0.5ms)[0m  [1m[32mINSERT INTO "products" ("store_id", "title", "description", "status", "product_type", "vendor", "metadata", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"], ["title", "Notebook"], ["description", "Lined notebook 200 pages"], ["status", "active"], ["product_type", "Stationery"], ["vendor", "Cartify Office"], ["metadata", "{}"], ["created_at", "2025-12-18 20:38:51.840402"], ["updated_at", "2025-12-18 20:38:51.840402"]]
+  [1m[36mVariant Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "variants" WHERE "variants"."product_id" = $1 LIMIT $2[0m  [["product_id", "706b8503-bfd7-4ba7-85bb-1cefa5425f9e"], ["LIMIT", 1]]
+  ↳ app/models/product.rb:27:in `create_default_variant'
+  [1m[36mVariant Create (0.1ms)[0m  [1m[32mINSERT INTO "variants" ("product_id", "title", "sku", "price", "compare_at_price", "position", "option_values", "requires_shipping", "weight", "weight_unit", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["product_id", "706b8503-bfd7-4ba7-85bb-1cefa5425f9e"], ["title", "Default"], ["sku", nil], ["price", "0.0"], ["compare_at_price", nil], ["position", 0], ["option_values", "{}"], ["requires_shipping", true], ["weight", nil], ["weight_unit", "kg"], ["created_at", "2025-12-18 20:38:51.842150"], ["updated_at", "2025-12-18 20:38:51.842150"]]
+  ↳ app/models/product.rb:27:in `create_default_variant'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mVariant Load (0.1ms)[0m  [1m[34mSELECT "variants".* FROM "variants" WHERE "variants"."product_id" = $1 AND "variants"."sku" = $2 LIMIT $3[0m  [["product_id", "706b8503-bfd7-4ba7-85bb-1cefa5425f9e"], ["sku", "NOTEBO"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVariant Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "variants" WHERE "variants"."sku" = $1 AND "variants"."product_id" = $2 LIMIT $3[0m  [["sku", "NOTEBO"], ["product_id", "706b8503-bfd7-4ba7-85bb-1cefa5425f9e"], ["LIMIT", 1]]
+  [1m[36mVariant Create (0.2ms)[0m  [1m[32mINSERT INTO "variants" ("product_id", "title", "sku", "price", "compare_at_price", "position", "option_values", "requires_shipping", "weight", "weight_unit", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["product_id", "706b8503-bfd7-4ba7-85bb-1cefa5425f9e"], ["title", "Default"], ["sku", "NOTEBO"], ["price", "38.0"], ["compare_at_price", nil], ["position", 0], ["option_values", "{}"], ["requires_shipping", true], ["weight", nil], ["weight_unit", "kg"], ["created_at", "2025-12-18 20:38:51.845279"], ["updated_at", "2025-12-18 20:38:51.845279"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mInventoryLevel Load (0.1ms)[0m  [1m[34mSELECT "inventory_levels".* FROM "inventory_levels" WHERE "inventory_levels"."variant_id" = $1 AND "inventory_levels"."location_id" = $2 LIMIT $3[0m  [["variant_id", "f5d50f05-3d37-4d9c-9e09-eadccf1895e4"], ["location_id", "32f05b3b-2023-422b-a313-c2b0691ecf04"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInventoryLevel Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "inventory_levels" WHERE "inventory_levels"."variant_id" = $1 AND "inventory_levels"."location_id" = $2 LIMIT $3[0m  [["variant_id", "f5d50f05-3d37-4d9c-9e09-eadccf1895e4"], ["location_id", "32f05b3b-2023-422b-a313-c2b0691ecf04"], ["LIMIT", 1]]
+  [1m[36mInventoryLevel Create (0.1ms)[0m  [1m[32mINSERT INTO "inventory_levels" ("variant_id", "location_id", "available", "committed", "incoming", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["variant_id", "f5d50f05-3d37-4d9c-9e09-eadccf1895e4"], ["location_id", "32f05b3b-2023-422b-a313-c2b0691ecf04"], ["available", 7], ["committed", 0], ["incoming", 0], ["created_at", "2025-12-18 20:38:51.848435"], ["updated_at", "2025-12-18 20:38:51.848435"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mInventoryLevel Load (0.1ms)[0m  [1m[34mSELECT "inventory_levels".* FROM "inventory_levels" WHERE "inventory_levels"."variant_id" = $1 AND "inventory_levels"."location_id" = $2 LIMIT $3[0m  [["variant_id", "f5d50f05-3d37-4d9c-9e09-eadccf1895e4"], ["location_id", "fb15f959-c55d-42ac-9d49-bf684c32ec63"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInventoryLevel Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "inventory_levels" WHERE "inventory_levels"."variant_id" = $1 AND "inventory_levels"."location_id" = $2 LIMIT $3[0m  [["variant_id", "f5d50f05-3d37-4d9c-9e09-eadccf1895e4"], ["location_id", "fb15f959-c55d-42ac-9d49-bf684c32ec63"], ["LIMIT", 1]]
+  [1m[36mInventoryLevel Create (0.1ms)[0m  [1m[32mINSERT INTO "inventory_levels" ("variant_id", "location_id", "available", "committed", "incoming", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["variant_id", "f5d50f05-3d37-4d9c-9e09-eadccf1895e4"], ["location_id", "fb15f959-c55d-42ac-9d49-bf684c32ec63"], ["available", 71], ["committed", 0], ["incoming", 0], ["created_at", "2025-12-18 20:38:51.850842"], ["updated_at", "2025-12-18 20:38:51.850842"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mOrder Load (0.4ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."store_id" = $1 AND "orders"."order_number" = $2 LIMIT $3[0m  [["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"], ["order_number", "DEM-000001"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "orders" WHERE "orders"."order_number" = $1 AND "orders"."store_id" = $2 LIMIT $3[0m  [["order_number", "DEM-000001"], ["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"], ["LIMIT", 1]]
+  [1m[36mOrder Create (0.4ms)[0m  [1m[32mINSERT INTO "orders" ("store_id", "order_number", "email", "status", "fulfillment_status", "financial_status", "subtotal", "total_tax", "total_shipping", "total_price", "currency", "shipping_address", "billing_address", "idempotency_key", "note", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17) RETURNING "id"[0m  [["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"], ["order_number", "DEM-000001"], ["email", "customer1@example.com"], ["status", "confirmed"], ["fulfillment_status", "unfulfilled"], ["financial_status", "paid"], ["subtotal", "0.0"], ["total_tax", "0.0"], ["total_shipping", "0.0"], ["total_price", "0.0"], ["currency", "USD"], ["shipping_address", "{\"first_name\":\"Customer\",\"last_name\":\"1\",\"address1\":\"715 Main St\",\"city\":\"San Francisco\",\"province\":\"CA\",\"zip\":\"94102\",\"country\":\"US\"}"], ["billing_address", "{}"], ["idempotency_key", "[FILTERED]"], ["note", nil], ["created_at", "2025-12-18 20:38:51.864384"], ["updated_at", "2025-12-18 20:38:51.864384"]]
+  [1m[36mTRANSACTION (28.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLineItem Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "line_items" WHERE "line_items"."order_id" = $1 LIMIT $2[0m  [["order_id", "f905215b-231e-40ad-bae2-a643dbebe43f"], ["LIMIT", 1]]
+  [1m[36mVariant Load (0.6ms)[0m  [1m[34mSELECT "variants".* FROM "variants" INNER JOIN "products" ON "products"."id" = "variants"."product_id" WHERE "products"."store_id" = $1[0m  [["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/line_item.rb:33:in `set_defaults_from_variant'
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", "7d42cd5f-183a-464c-b140-fe2813832106"], ["LIMIT", 1]]
+  ↳ app/models/line_item.rb:33:in `set_defaults_from_variant'
+  [1m[36mLineItem Create (0.5ms)[0m  [1m[32mINSERT INTO "line_items" ("order_id", "variant_id", "title", "variant_title", "sku", "quantity", "price", "total_discount", "requires_shipping", "fulfilled_quantity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["order_id", "f905215b-231e-40ad-bae2-a643dbebe43f"], ["variant_id", "919cf42b-afd3-49ec-ae03-5e70d17c4959"], ["title", "Premium Hoodie"], ["variant_title", "Small"], ["sku", "HD-S"], ["quantity", 3], ["price", "59.99"], ["total_discount", "0.0"], ["requires_shipping", true], ["fulfilled_quantity", 0], ["created_at", "2025-12-18 20:38:51.925733"], ["updated_at", "2025-12-18 20:38:51.925733"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = $1[0m  [["order_id", "f905215b-231e-40ad-bae2-a643dbebe43f"]]
+  ↳ app/models/order.rb:39:in `calculate_totals'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Update (0.2ms)[0m  [1m[33mUPDATE "orders" SET "subtotal" = $1, "total_price" = $2, "updated_at" = $3 WHERE "orders"."id" = $4[0m  [["subtotal", "179.97"], ["total_price", "179.97"], ["updated_at", "2025-12-18 20:38:51.931423"], ["id", "f905215b-231e-40ad-bae2-a643dbebe43f"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mOrder Load (0.4ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."store_id" = $1 AND "orders"."order_number" = $2 LIMIT $3[0m  [["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"], ["order_number", "DEM-000002"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "orders" WHERE "orders"."order_number" = $1 AND "orders"."store_id" = $2 LIMIT $3[0m  [["order_number", "DEM-000002"], ["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"], ["LIMIT", 1]]
+  [1m[36mOrder Create (0.4ms)[0m  [1m[32mINSERT INTO "orders" ("store_id", "order_number", "email", "status", "fulfillment_status", "financial_status", "subtotal", "total_tax", "total_shipping", "total_price", "currency", "shipping_address", "billing_address", "idempotency_key", "note", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17) RETURNING "id"[0m  [["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"], ["order_number", "DEM-000002"], ["email", "customer2@example.com"], ["status", "pending"], ["fulfillment_status", "unfulfilled"], ["financial_status", "paid"], ["subtotal", "0.0"], ["total_tax", "0.0"], ["total_shipping", "0.0"], ["total_price", "0.0"], ["currency", "USD"], ["shipping_address", "{\"first_name\":\"Customer\",\"last_name\":\"2\",\"address1\":\"149 Main St\",\"city\":\"San Francisco\",\"province\":\"CA\",\"zip\":\"94102\",\"country\":\"US\"}"], ["billing_address", "{}"], ["idempotency_key", "[FILTERED]"], ["note", nil], ["created_at", "2025-12-18 20:38:51.938171"], ["updated_at", "2025-12-18 20:38:51.938171"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLineItem Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "line_items" WHERE "line_items"."order_id" = $1 LIMIT $2[0m  [["order_id", "1db9e647-2e39-4282-9958-320f78536a6d"], ["LIMIT", 1]]
+  [1m[36mVariant Load (0.2ms)[0m  [1m[34mSELECT "variants".* FROM "variants" INNER JOIN "products" ON "products"."id" = "variants"."product_id" WHERE "products"."store_id" = $1[0m  [["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/line_item.rb:33:in `set_defaults_from_variant'
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", "7d42cd5f-183a-464c-b140-fe2813832106"], ["LIMIT", 1]]
+  ↳ app/models/line_item.rb:33:in `set_defaults_from_variant'
+  [1m[36mLineItem Create (0.3ms)[0m  [1m[32mINSERT INTO "line_items" ("order_id", "variant_id", "title", "variant_title", "sku", "quantity", "price", "total_discount", "requires_shipping", "fulfilled_quantity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["order_id", "1db9e647-2e39-4282-9958-320f78536a6d"], ["variant_id", "919cf42b-afd3-49ec-ae03-5e70d17c4959"], ["title", "Premium Hoodie"], ["variant_title", "Small"], ["sku", "HD-S"], ["quantity", 2], ["price", "59.99"], ["total_discount", "0.0"], ["requires_shipping", true], ["fulfilled_quantity", 0], ["created_at", "2025-12-18 20:38:51.942766"], ["updated_at", "2025-12-18 20:38:51.942766"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = $1[0m  [["order_id", "1db9e647-2e39-4282-9958-320f78536a6d"]]
+  ↳ app/models/order.rb:39:in `calculate_totals'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Update (0.6ms)[0m  [1m[33mUPDATE "orders" SET "subtotal" = $1, "total_price" = $2, "updated_at" = $3 WHERE "orders"."id" = $4[0m  [["subtotal", "119.98"], ["total_price", "119.98"], ["updated_at", "2025-12-18 20:38:51.945015"], ["id", "1db9e647-2e39-4282-9958-320f78536a6d"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."store_id" = $1 AND "orders"."order_number" = $2 LIMIT $3[0m  [["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"], ["order_number", "DEM-000003"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "orders" WHERE "orders"."order_number" = $1 AND "orders"."store_id" = $2 LIMIT $3[0m  [["order_number", "DEM-000003"], ["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"], ["LIMIT", 1]]
+  [1m[36mOrder Create (0.2ms)[0m  [1m[32mINSERT INTO "orders" ("store_id", "order_number", "email", "status", "fulfillment_status", "financial_status", "subtotal", "total_tax", "total_shipping", "total_price", "currency", "shipping_address", "billing_address", "idempotency_key", "note", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17) RETURNING "id"[0m  [["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"], ["order_number", "DEM-000003"], ["email", "customer3@example.com"], ["status", "confirmed"], ["fulfillment_status", "unfulfilled"], ["financial_status", "paid"], ["subtotal", "0.0"], ["total_tax", "0.0"], ["total_shipping", "0.0"], ["total_price", "0.0"], ["currency", "USD"], ["shipping_address", "{\"first_name\":\"Customer\",\"last_name\":\"3\",\"address1\":\"293 Main St\",\"city\":\"San Francisco\",\"province\":\"CA\",\"zip\":\"94102\",\"country\":\"US\"}"], ["billing_address", "{}"], ["idempotency_key", "[FILTERED]"], ["note", nil], ["created_at", "2025-12-18 20:38:51.948879"], ["updated_at", "2025-12-18 20:38:51.948879"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLineItem Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "line_items" WHERE "line_items"."order_id" = $1 LIMIT $2[0m  [["order_id", "24f8036e-db83-4948-99ab-3b70698965ac"], ["LIMIT", 1]]
+  [1m[36mVariant Load (0.2ms)[0m  [1m[34mSELECT "variants".* FROM "variants" INNER JOIN "products" ON "products"."id" = "variants"."product_id" WHERE "products"."store_id" = $1[0m  [["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/line_item.rb:33:in `set_defaults_from_variant'
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", "3de9a7d7-23ee-45db-8065-92d04b75d30b"], ["LIMIT", 1]]
+  ↳ app/models/line_item.rb:33:in `set_defaults_from_variant'
+  [1m[36mLineItem Create (0.2ms)[0m  [1m[32mINSERT INTO "line_items" ("order_id", "variant_id", "title", "variant_title", "sku", "quantity", "price", "total_discount", "requires_shipping", "fulfilled_quantity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["order_id", "24f8036e-db83-4948-99ab-3b70698965ac"], ["variant_id", "088251d6-b088-4971-8a93-98431a2c5ef3"], ["title", "Coffee Mug"], ["variant_title", "Default"], ["sku", "COFFEE"], ["quantity", 3], ["price", "30.0"], ["total_discount", "0.0"], ["requires_shipping", true], ["fulfilled_quantity", 0], ["created_at", "2025-12-18 20:38:51.952751"], ["updated_at", "2025-12-18 20:38:51.952751"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mVariant Load (0.1ms)[0m  [1m[34mSELECT "variants".* FROM "variants" INNER JOIN "products" ON "products"."id" = "variants"."product_id" WHERE "products"."store_id" = $1[0m  [["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/line_item.rb:33:in `set_defaults_from_variant'
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", "706b8503-bfd7-4ba7-85bb-1cefa5425f9e"], ["LIMIT", 1]]
+  ↳ app/models/line_item.rb:33:in `set_defaults_from_variant'
+  [1m[36mLineItem Create (0.1ms)[0m  [1m[32mINSERT INTO "line_items" ("order_id", "variant_id", "title", "variant_title", "sku", "quantity", "price", "total_discount", "requires_shipping", "fulfilled_quantity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["order_id", "24f8036e-db83-4948-99ab-3b70698965ac"], ["variant_id", "26e3dd99-0655-4251-83de-d9c0693bc499"], ["title", "Notebook"], ["variant_title", "Default"], ["sku", nil], ["quantity", 1], ["price", "0.0"], ["total_discount", "0.0"], ["requires_shipping", true], ["fulfilled_quantity", 0], ["created_at", "2025-12-18 20:38:51.956021"], ["updated_at", "2025-12-18 20:38:51.956021"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mVariant Load (0.1ms)[0m  [1m[34mSELECT "variants".* FROM "variants" INNER JOIN "products" ON "products"."id" = "variants"."product_id" WHERE "products"."store_id" = $1[0m  [["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/line_item.rb:33:in `set_defaults_from_variant'
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", "7d42cd5f-183a-464c-b140-fe2813832106"], ["LIMIT", 1]]
+  ↳ app/models/line_item.rb:33:in `set_defaults_from_variant'
+  [1m[36mLineItem Create (0.2ms)[0m  [1m[32mINSERT INTO "line_items" ("order_id", "variant_id", "title", "variant_title", "sku", "quantity", "price", "total_discount", "requires_shipping", "fulfilled_quantity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["order_id", "24f8036e-db83-4948-99ab-3b70698965ac"], ["variant_id", "557a355a-7d82-40d3-b2b2-c4e343aa46c4"], ["title", "Premium Hoodie"], ["variant_title", "Large"], ["sku", "HD-L"], ["quantity", 1], ["price", "59.99"], ["total_discount", "0.0"], ["requires_shipping", true], ["fulfilled_quantity", 0], ["created_at", "2025-12-18 20:38:51.958693"], ["updated_at", "2025-12-18 20:38:51.958693"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = $1[0m  [["order_id", "24f8036e-db83-4948-99ab-3b70698965ac"]]
+  ↳ app/models/order.rb:39:in `calculate_totals'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Update (0.6ms)[0m  [1m[33mUPDATE "orders" SET "subtotal" = $1, "total_price" = $2, "updated_at" = $3 WHERE "orders"."id" = $4[0m  [["subtotal", "149.99"], ["total_price", "149.99"], ["updated_at", "2025-12-18 20:38:51.960956"], ["id", "24f8036e-db83-4948-99ab-3b70698965ac"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."store_id" = $1 AND "orders"."order_number" = $2 LIMIT $3[0m  [["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"], ["order_number", "DEM-000004"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "orders" WHERE "orders"."order_number" = $1 AND "orders"."store_id" = $2 LIMIT $3[0m  [["order_number", "DEM-000004"], ["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"], ["LIMIT", 1]]
+  [1m[36mOrder Create (0.1ms)[0m  [1m[32mINSERT INTO "orders" ("store_id", "order_number", "email", "status", "fulfillment_status", "financial_status", "subtotal", "total_tax", "total_shipping", "total_price", "currency", "shipping_address", "billing_address", "idempotency_key", "note", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17) RETURNING "id"[0m  [["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"], ["order_number", "DEM-000004"], ["email", "customer4@example.com"], ["status", "pending"], ["fulfillment_status", "unfulfilled"], ["financial_status", "paid"], ["subtotal", "0.0"], ["total_tax", "0.0"], ["total_shipping", "0.0"], ["total_price", "0.0"], ["currency", "USD"], ["shipping_address", "{\"first_name\":\"Customer\",\"last_name\":\"4\",\"address1\":\"385 Main St\",\"city\":\"San Francisco\",\"province\":\"CA\",\"zip\":\"94102\",\"country\":\"US\"}"], ["billing_address", "{}"], ["idempotency_key", "[FILTERED]"], ["note", nil], ["created_at", "2025-12-18 20:38:51.964464"], ["updated_at", "2025-12-18 20:38:51.964464"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLineItem Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "line_items" WHERE "line_items"."order_id" = $1 LIMIT $2[0m  [["order_id", "7a00c528-829f-4bf0-b80b-57feb976243d"], ["LIMIT", 1]]
+  [1m[36mVariant Load (0.2ms)[0m  [1m[34mSELECT "variants".* FROM "variants" INNER JOIN "products" ON "products"."id" = "variants"."product_id" WHERE "products"."store_id" = $1[0m  [["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/line_item.rb:33:in `set_defaults_from_variant'
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", "7d42cd5f-183a-464c-b140-fe2813832106"], ["LIMIT", 1]]
+  ↳ app/models/line_item.rb:33:in `set_defaults_from_variant'
+  [1m[36mLineItem Create (0.2ms)[0m  [1m[32mINSERT INTO "line_items" ("order_id", "variant_id", "title", "variant_title", "sku", "quantity", "price", "total_discount", "requires_shipping", "fulfilled_quantity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["order_id", "7a00c528-829f-4bf0-b80b-57feb976243d"], ["variant_id", "63d54d9b-c960-47c4-813d-03db5bc1340b"], ["title", "Premium Hoodie"], ["variant_title", "Medium"], ["sku", "HD-M"], ["quantity", 3], ["price", "59.99"], ["total_discount", "0.0"], ["requires_shipping", true], ["fulfilled_quantity", 0], ["created_at", "2025-12-18 20:38:51.967888"], ["updated_at", "2025-12-18 20:38:51.967888"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = $1[0m  [["order_id", "7a00c528-829f-4bf0-b80b-57feb976243d"]]
+  ↳ app/models/order.rb:39:in `calculate_totals'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Update (0.5ms)[0m  [1m[33mUPDATE "orders" SET "subtotal" = $1, "total_price" = $2, "updated_at" = $3 WHERE "orders"."id" = $4[0m  [["subtotal", "179.97"], ["total_price", "179.97"], ["updated_at", "2025-12-18 20:38:51.969777"], ["id", "7a00c528-829f-4bf0-b80b-57feb976243d"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mOrder Load (0.1ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."store_id" = $1 AND "orders"."order_number" = $2 LIMIT $3[0m  [["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"], ["order_number", "DEM-000005"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mOrder Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "orders" WHERE "orders"."order_number" = $1 AND "orders"."store_id" = $2 LIMIT $3[0m  [["order_number", "DEM-000005"], ["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"], ["LIMIT", 1]]
+  [1m[36mOrder Create (0.1ms)[0m  [1m[32mINSERT INTO "orders" ("store_id", "order_number", "email", "status", "fulfillment_status", "financial_status", "subtotal", "total_tax", "total_shipping", "total_price", "currency", "shipping_address", "billing_address", "idempotency_key", "note", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17) RETURNING "id"[0m  [["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"], ["order_number", "DEM-000005"], ["email", "customer5@example.com"], ["status", "confirmed"], ["fulfillment_status", "unfulfilled"], ["financial_status", "paid"], ["subtotal", "0.0"], ["total_tax", "0.0"], ["total_shipping", "0.0"], ["total_price", "0.0"], ["currency", "USD"], ["shipping_address", "{\"first_name\":\"Customer\",\"last_name\":\"5\",\"address1\":\"408 Main St\",\"city\":\"San Francisco\",\"province\":\"CA\",\"zip\":\"94102\",\"country\":\"US\"}"], ["billing_address", "{}"], ["idempotency_key", "[FILTERED]"], ["note", nil], ["created_at", "2025-12-18 20:38:51.973078"], ["updated_at", "2025-12-18 20:38:51.973078"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLineItem Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "line_items" WHERE "line_items"."order_id" = $1 LIMIT $2[0m  [["order_id", "3789129a-8a30-42d0-90d7-e331282a2135"], ["LIMIT", 1]]
+  [1m[36mVariant Load (0.1ms)[0m  [1m[34mSELECT "variants".* FROM "variants" INNER JOIN "products" ON "products"."id" = "variants"."product_id" WHERE "products"."store_id" = $1[0m  [["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/line_item.rb:33:in `set_defaults_from_variant'
+  [1m[36mProduct Load (0.0ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", "7d42cd5f-183a-464c-b140-fe2813832106"], ["LIMIT", 1]]
+  ↳ app/models/line_item.rb:33:in `set_defaults_from_variant'
+  [1m[36mLineItem Create (0.1ms)[0m  [1m[32mINSERT INTO "line_items" ("order_id", "variant_id", "title", "variant_title", "sku", "quantity", "price", "total_discount", "requires_shipping", "fulfilled_quantity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["order_id", "3789129a-8a30-42d0-90d7-e331282a2135"], ["variant_id", "c70f3b46-24f9-45d0-acce-8aec958e0ed8"], ["title", "Premium Hoodie"], ["variant_title", "Default"], ["sku", nil], ["quantity", 3], ["price", "0.0"], ["total_discount", "0.0"], ["requires_shipping", true], ["fulfilled_quantity", 0], ["created_at", "2025-12-18 20:38:51.976425"], ["updated_at", "2025-12-18 20:38:51.976425"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mVariant Load (0.1ms)[0m  [1m[34mSELECT "variants".* FROM "variants" INNER JOIN "products" ON "products"."id" = "variants"."product_id" WHERE "products"."store_id" = $1[0m  [["store_id", "59d70cfd-6669-423a-9e05-5519323c645f"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/line_item.rb:33:in `set_defaults_from_variant'
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", "3de9a7d7-23ee-45db-8065-92d04b75d30b"], ["LIMIT", 1]]
+  ↳ app/models/line_item.rb:33:in `set_defaults_from_variant'
+  [1m[36mLineItem Create (0.1ms)[0m  [1m[32mINSERT INTO "line_items" ("order_id", "variant_id", "title", "variant_title", "sku", "quantity", "price", "total_discount", "requires_shipping", "fulfilled_quantity", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["order_id", "3789129a-8a30-42d0-90d7-e331282a2135"], ["variant_id", "e319763d-3948-4ca6-82d2-56bddc46fea5"], ["title", "Coffee Mug"], ["variant_title", "Default"], ["sku", nil], ["quantity", 3], ["price", "0.0"], ["total_discount", "0.0"], ["requires_shipping", true], ["fulfilled_quantity", 0], ["created_at", "2025-12-18 20:38:51.979522"], ["updated_at", "2025-12-18 20:38:51.979522"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mLineItem Load (0.1ms)[0m  [1m[34mSELECT "line_items".* FROM "line_items" WHERE "line_items"."order_id" = $1[0m  [["order_id", "3789129a-8a30-42d0-90d7-e331282a2135"]]
+  ↳ app/models/order.rb:39:in `calculate_totals'
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/health" for 192.168.65.1 at 2025-12-18 20:40:31 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/graphql" for 192.168.65.1 at 2025-12-18 20:42:03 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+Zeitwerk::NameError (expected file /app/app/controllers/graphql_controller.rb to define constant GraphQLController, but didn't):
+  
+zeitwerk (2.7.4) lib/zeitwerk/loader/callbacks.rb:31:in `on_file_autoloaded'
+zeitwerk (2.7.4) lib/zeitwerk/core_ext/kernel.rb:27:in `require'
+activesupport (7.1.6) lib/active_support/inflector/methods.rb:290:in `const_get'
+activesupport (7.1.6) lib/active_support/inflector/methods.rb:290:in `constantize'
+activesupport (7.1.6) lib/active_support/core_ext/string/inflections.rb:74:in `constantize'
+actionpack (7.1.6) lib/action_dispatch/http/request.rb:90:in `controller_class_for'
+actionpack (7.1.6) lib/action_dispatch/request/utils.rb:100:in `action_encoding_template'
+actionpack (7.1.6) lib/action_dispatch/request/utils.rb:85:in `encode'
+actionpack (7.1.6) lib/action_dispatch/request/utils.rb:45:in `set_binary_encoding'
+actionpack (7.1.6) lib/action_dispatch/http/parameters.rb:68:in `path_parameters='
+actionpack (7.1.6) lib/action_dispatch/journey/router.rb:48:in `block in serve'
+actionpack (7.1.6) lib/action_dispatch/journey/router.rb:131:in `block in find_routes'
+actionpack (7.1.6) lib/action_dispatch/journey/router.rb:124:in `each'
+actionpack (7.1.6) lib/action_dispatch/journey/router.rb:124:in `find_routes'
+actionpack (7.1.6) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.1.6) lib/action_dispatch/routing/route_set.rb:882:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/static.rb:25:in `call'
+rack (3.2.4) lib/rack/etag.rb:29:in `call'
+rack (3.2.4) lib/rack/conditional_get.rb:44:in `call'
+rack (3.2.4) lib/rack/head.rb:15:in `call'
+activerecord (7.1.6) lib/active_record/migration.rb:655:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+activesupport (7.1.6) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.1.6) lib/action_dispatch/middleware/callbacks.rb:28:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (7.1.6) lib/rails/rack/logger.rb:37:in `call_app'
+railties (7.1.6) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (7.1.6) lib/active_support/tagged_logging.rb:139:in `block in tagged'
+activesupport (7.1.6) lib/active_support/tagged_logging.rb:39:in `tagged'
+activesupport (7.1.6) lib/active_support/tagged_logging.rb:139:in `tagged'
+activesupport (7.1.6) lib/active_support/broadcast_logger.rb:241:in `method_missing'
+railties (7.1.6) lib/rails/rack/logger.rb:24:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/remote_ip.rb:92:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/request_id.rb:28:in `call'
+rack (3.2.4) lib/rack/runtime.rb:24:in `call'
+activesupport (7.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/server_timing.rb:59:in `block in call'
+actionpack (7.1.6) lib/action_dispatch/middleware/server_timing.rb:24:in `collect_events'
+actionpack (7.1.6) lib/action_dispatch/middleware/server_timing.rb:58:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/static.rb:25:in `call'
+rack (3.2.4) lib/rack/sendfile.rb:131:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/host_authorization.rb:141:in `call'
+rack-cors (3.0.0) lib/rack/cors.rb:102:in `call'
+railties (7.1.6) lib/rails/engine.rb:536:in `call'
+puma (6.6.1) lib/puma/configuration.rb:279:in `call'
+puma (6.6.1) lib/puma/request.rb:99:in `block in handle_request'
+puma (6.6.1) lib/puma/thread_pool.rb:390:in `with_force_shutdown'
+puma (6.6.1) lib/puma/request.rb:98:in `handle_request'
+puma (6.6.1) lib/puma/server.rb:472:in `process_client'
+puma (6.6.1) lib/puma/server.rb:254:in `block in run'
+puma (6.6.1) lib/puma/thread_pool.rb:167:in `block in spawn_thread'
+Started POST "/graphql" for 192.168.65.1 at 2025-12-18 20:42:17 +0000
+  
+ActionController::RoutingError (uninitialized constant GraphQLController):
+  
+Started POST "/graphql" for 192.168.65.1 at 2025-12-18 20:42:31 +0000
+  
+Zeitwerk::NameError (expected file /app/app/controllers/graphql_controller.rb to define constant GraphQLController, but didn't):
+  
+zeitwerk (2.7.4) lib/zeitwerk/loader/callbacks.rb:31:in `on_file_autoloaded'
+zeitwerk (2.7.4) lib/zeitwerk/core_ext/kernel.rb:27:in `require'
+activesupport (7.1.6) lib/active_support/inflector/methods.rb:290:in `const_get'
+activesupport (7.1.6) lib/active_support/inflector/methods.rb:290:in `constantize'
+activesupport (7.1.6) lib/active_support/core_ext/string/inflections.rb:74:in `constantize'
+actionpack (7.1.6) lib/action_dispatch/http/request.rb:90:in `controller_class_for'
+actionpack (7.1.6) lib/action_dispatch/request/utils.rb:100:in `action_encoding_template'
+actionpack (7.1.6) lib/action_dispatch/request/utils.rb:85:in `encode'
+actionpack (7.1.6) lib/action_dispatch/request/utils.rb:45:in `set_binary_encoding'
+actionpack (7.1.6) lib/action_dispatch/http/parameters.rb:68:in `path_parameters='
+actionpack (7.1.6) lib/action_dispatch/journey/router.rb:48:in `block in serve'
+actionpack (7.1.6) lib/action_dispatch/journey/router.rb:131:in `block in find_routes'
+actionpack (7.1.6) lib/action_dispatch/journey/router.rb:124:in `each'
+actionpack (7.1.6) lib/action_dispatch/journey/router.rb:124:in `find_routes'
+actionpack (7.1.6) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.1.6) lib/action_dispatch/routing/route_set.rb:882:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/static.rb:25:in `call'
+rack (3.2.4) lib/rack/etag.rb:29:in `call'
+rack (3.2.4) lib/rack/conditional_get.rb:44:in `call'
+rack (3.2.4) lib/rack/head.rb:15:in `call'
+activerecord (7.1.6) lib/active_record/migration.rb:655:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+activesupport (7.1.6) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.1.6) lib/action_dispatch/middleware/callbacks.rb:28:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (7.1.6) lib/rails/rack/logger.rb:37:in `call_app'
+railties (7.1.6) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (7.1.6) lib/active_support/tagged_logging.rb:139:in `block in tagged'
+activesupport (7.1.6) lib/active_support/tagged_logging.rb:39:in `tagged'
+activesupport (7.1.6) lib/active_support/tagged_logging.rb:139:in `tagged'
+activesupport (7.1.6) lib/active_support/broadcast_logger.rb:241:in `method_missing'
+railties (7.1.6) lib/rails/rack/logger.rb:24:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/remote_ip.rb:92:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/request_id.rb:28:in `call'
+rack (3.2.4) lib/rack/runtime.rb:24:in `call'
+activesupport (7.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/server_timing.rb:59:in `block in call'
+actionpack (7.1.6) lib/action_dispatch/middleware/server_timing.rb:24:in `collect_events'
+actionpack (7.1.6) lib/action_dispatch/middleware/server_timing.rb:58:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/static.rb:25:in `call'
+rack (3.2.4) lib/rack/sendfile.rb:131:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/host_authorization.rb:141:in `call'
+rack-cors (3.0.0) lib/rack/cors.rb:102:in `call'
+railties (7.1.6) lib/rails/engine.rb:536:in `call'
+puma (6.6.1) lib/puma/configuration.rb:279:in `call'
+puma (6.6.1) lib/puma/request.rb:99:in `block in handle_request'
+puma (6.6.1) lib/puma/thread_pool.rb:390:in `with_force_shutdown'
+puma (6.6.1) lib/puma/request.rb:98:in `handle_request'
+puma (6.6.1) lib/puma/server.rb:472:in `process_client'
+puma (6.6.1) lib/puma/server.rb:254:in `block in run'
+puma (6.6.1) lib/puma/thread_pool.rb:167:in `block in spawn_thread'
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/health" for 192.168.65.1 at 2025-12-18 20:43:18 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/graphql" for 192.168.65.1 at 2025-12-18 20:43:18 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+Zeitwerk::NameError (expected file /app/app/controllers/graphql_controller.rb to define constant GraphQLController, but didn't):
+  
+zeitwerk (2.7.4) lib/zeitwerk/loader/callbacks.rb:31:in `on_file_autoloaded'
+zeitwerk (2.7.4) lib/zeitwerk/core_ext/kernel.rb:27:in `require'
+activesupport (7.1.6) lib/active_support/inflector/methods.rb:290:in `const_get'
+activesupport (7.1.6) lib/active_support/inflector/methods.rb:290:in `constantize'
+activesupport (7.1.6) lib/active_support/core_ext/string/inflections.rb:74:in `constantize'
+actionpack (7.1.6) lib/action_dispatch/http/request.rb:90:in `controller_class_for'
+actionpack (7.1.6) lib/action_dispatch/request/utils.rb:100:in `action_encoding_template'
+actionpack (7.1.6) lib/action_dispatch/request/utils.rb:85:in `encode'
+actionpack (7.1.6) lib/action_dispatch/request/utils.rb:45:in `set_binary_encoding'
+actionpack (7.1.6) lib/action_dispatch/http/parameters.rb:68:in `path_parameters='
+actionpack (7.1.6) lib/action_dispatch/journey/router.rb:48:in `block in serve'
+actionpack (7.1.6) lib/action_dispatch/journey/router.rb:131:in `block in find_routes'
+actionpack (7.1.6) lib/action_dispatch/journey/router.rb:124:in `each'
+actionpack (7.1.6) lib/action_dispatch/journey/router.rb:124:in `find_routes'
+actionpack (7.1.6) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.1.6) lib/action_dispatch/routing/route_set.rb:882:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/static.rb:25:in `call'
+rack (3.2.4) lib/rack/etag.rb:29:in `call'
+rack (3.2.4) lib/rack/conditional_get.rb:44:in `call'
+rack (3.2.4) lib/rack/head.rb:15:in `call'
+activerecord (7.1.6) lib/active_record/migration.rb:655:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+activesupport (7.1.6) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.1.6) lib/action_dispatch/middleware/callbacks.rb:28:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (7.1.6) lib/rails/rack/logger.rb:37:in `call_app'
+railties (7.1.6) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (7.1.6) lib/active_support/tagged_logging.rb:139:in `block in tagged'
+activesupport (7.1.6) lib/active_support/tagged_logging.rb:39:in `tagged'
+activesupport (7.1.6) lib/active_support/tagged_logging.rb:139:in `tagged'
+activesupport (7.1.6) lib/active_support/broadcast_logger.rb:241:in `method_missing'
+railties (7.1.6) lib/rails/rack/logger.rb:24:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/remote_ip.rb:92:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/request_id.rb:28:in `call'
+rack (3.2.4) lib/rack/runtime.rb:24:in `call'
+activesupport (7.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/server_timing.rb:59:in `block in call'
+actionpack (7.1.6) lib/action_dispatch/middleware/server_timing.rb:24:in `collect_events'
+actionpack (7.1.6) lib/action_dispatch/middleware/server_timing.rb:58:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/static.rb:25:in `call'
+rack (3.2.4) lib/rack/sendfile.rb:131:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/host_authorization.rb:141:in `call'
+rack-cors (3.0.0) lib/rack/cors.rb:102:in `call'
+railties (7.1.6) lib/rails/engine.rb:536:in `call'
+puma (6.6.1) lib/puma/configuration.rb:279:in `call'
+puma (6.6.1) lib/puma/request.rb:99:in `block in handle_request'
+puma (6.6.1) lib/puma/thread_pool.rb:390:in `with_force_shutdown'
+puma (6.6.1) lib/puma/request.rb:98:in `handle_request'
+puma (6.6.1) lib/puma/server.rb:472:in `process_client'
+puma (6.6.1) lib/puma/server.rb:254:in `block in run'
+puma (6.6.1) lib/puma/thread_pool.rb:167:in `block in spawn_thread'
+Started POST "/graphql" for 192.168.65.1 at 2025-12-18 20:46:29 +0000
+  
+Zeitwerk::NameError (expected file /app/app/controllers/graphql_controller.rb to define constant GraphQLController, but didn't):
+  
+zeitwerk (2.7.4) lib/zeitwerk/loader/callbacks.rb:31:in `on_file_autoloaded'
+zeitwerk (2.7.4) lib/zeitwerk/core_ext/kernel.rb:27:in `require'
+activesupport (7.1.6) lib/active_support/inflector/methods.rb:290:in `const_get'
+activesupport (7.1.6) lib/active_support/inflector/methods.rb:290:in `constantize'
+activesupport (7.1.6) lib/active_support/core_ext/string/inflections.rb:74:in `constantize'
+actionpack (7.1.6) lib/action_dispatch/http/request.rb:90:in `controller_class_for'
+actionpack (7.1.6) lib/action_dispatch/request/utils.rb:100:in `action_encoding_template'
+actionpack (7.1.6) lib/action_dispatch/request/utils.rb:85:in `encode'
+actionpack (7.1.6) lib/action_dispatch/request/utils.rb:45:in `set_binary_encoding'
+actionpack (7.1.6) lib/action_dispatch/http/parameters.rb:68:in `path_parameters='
+actionpack (7.1.6) lib/action_dispatch/journey/router.rb:48:in `block in serve'
+actionpack (7.1.6) lib/action_dispatch/journey/router.rb:131:in `block in find_routes'
+actionpack (7.1.6) lib/action_dispatch/journey/router.rb:124:in `each'
+actionpack (7.1.6) lib/action_dispatch/journey/router.rb:124:in `find_routes'
+actionpack (7.1.6) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.1.6) lib/action_dispatch/routing/route_set.rb:882:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/static.rb:25:in `call'
+rack (3.2.4) lib/rack/etag.rb:29:in `call'
+rack (3.2.4) lib/rack/conditional_get.rb:44:in `call'
+rack (3.2.4) lib/rack/head.rb:15:in `call'
+activerecord (7.1.6) lib/active_record/migration.rb:655:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+activesupport (7.1.6) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.1.6) lib/action_dispatch/middleware/callbacks.rb:28:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/actionable_exceptions.rb:16:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (7.1.6) lib/rails/rack/logger.rb:37:in `call_app'
+railties (7.1.6) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (7.1.6) lib/active_support/tagged_logging.rb:139:in `block in tagged'
+activesupport (7.1.6) lib/active_support/tagged_logging.rb:39:in `tagged'
+activesupport (7.1.6) lib/active_support/tagged_logging.rb:139:in `tagged'
+activesupport (7.1.6) lib/active_support/broadcast_logger.rb:241:in `method_missing'
+railties (7.1.6) lib/rails/rack/logger.rb:24:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/remote_ip.rb:92:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/request_id.rb:28:in `call'
+rack (3.2.4) lib/rack/runtime.rb:24:in `call'
+activesupport (7.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/server_timing.rb:59:in `block in call'
+actionpack (7.1.6) lib/action_dispatch/middleware/server_timing.rb:24:in `collect_events'
+actionpack (7.1.6) lib/action_dispatch/middleware/server_timing.rb:58:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/static.rb:25:in `call'
+rack (3.2.4) lib/rack/sendfile.rb:131:in `call'
+actionpack (7.1.6) lib/action_dispatch/middleware/host_authorization.rb:141:in `call'
+rack-cors (3.0.0) lib/rack/cors.rb:102:in `call'
+railties (7.1.6) lib/rails/engine.rb:536:in `call'
+puma (6.6.1) lib/puma/configuration.rb:279:in `call'
+puma (6.6.1) lib/puma/request.rb:99:in `block in handle_request'
+puma (6.6.1) lib/puma/thread_pool.rb:390:in `with_force_shutdown'
+puma (6.6.1) lib/puma/request.rb:98:in `handle_request'
+puma (6.6.1) lib/puma/server.rb:472:in `process_client'
+puma (6.6.1) lib/puma/server.rb:254:in `block in run'
+puma (6.6.1) lib/puma/thread_pool.rb:167:in `block in spawn_thread'
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/graphql" for 192.168.65.1 at 2025-12-18 20:47:27 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by GraphQLController#execute as */*
+  Parameters: {"query"=>"{ __typename }", "graphql"=>{"query"=>"{ __typename }"}}
+undefined method `input_object_class' for Mutations::BaseMutation:Class
+/app/app/graphql/mutations/base_mutation.rb:5:in `<class:BaseMutation>'
+/app/app/graphql/mutations/base_mutation.rb:2:in `<module:Mutations>'
+/app/app/graphql/mutations/base_mutation.rb:1:in `<main>'
+<internal:/usr/local/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:38:in `require'
+<internal:/usr/local/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:38:in `require'
+/usr/local/bundle/gems/bootsnap-1.19.0/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:30:in `require'
+/usr/local/bundle/gems/zeitwerk-2.7.4/lib/zeitwerk/core_ext/kernel.rb:26:in `require'
+/app/app/graphql/mutations/sign_in.rb:2:in `<module:Mutations>'
+/app/app/graphql/mutations/sign_in.rb:1:in `<main>'
+<internal:/usr/local/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:38:in `require'
+<internal:/usr/local/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:38:in `require'
+/usr/local/bundle/gems/bootsnap-1.19.0/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:30:in `require'
+/usr/local/bundle/gems/zeitwerk-2.7.4/lib/zeitwerk/core_ext/kernel.rb:26:in `require'
+/app/app/graphql/types/mutation_type.rb:4:in `<class:MutationType>'
+/app/app/graphql/types/mutation_type.rb:2:in `<module:Types>'
+/app/app/graphql/types/mutation_type.rb:1:in `<main>'
+<internal:/usr/local/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:38:in `require'
+<internal:/usr/local/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:38:in `require'
+/usr/local/bundle/gems/bootsnap-1.19.0/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:30:in `require'
+/usr/local/bundle/gems/zeitwerk-2.7.4/lib/zeitwerk/core_ext/kernel.rb:26:in `require'
+/app/app/graphql/cartify_schema.rb:2:in `<class:CartifySchema>'
+/app/app/graphql/cartify_schema.rb:1:in `<main>'
+<internal:/usr/local/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:38:in `require'
+<internal:/usr/local/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:38:in `require'
+/usr/local/bundle/gems/bootsnap-1.19.0/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:30:in `require'
+/usr/local/bundle/gems/zeitwerk-2.7.4/lib/zeitwerk/core_ext/kernel.rb:26:in `require'
+/app/app/controllers/graphql_controller.rb:16:in `execute'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_controller/metal/basic_implicit_render.rb:6:in `send_action'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/abstract_controller/base.rb:224:in `process_action'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_controller/metal/rendering.rb:165:in `process_action'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/abstract_controller/callbacks.rb:259:in `block in process_action'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/callbacks.rb:110:in `run_callbacks'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/abstract_controller/callbacks.rb:258:in `process_action'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_controller/metal/rescue.rb:25:in `process_action'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_controller/metal/instrumentation.rb:74:in `block in process_action'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/notifications.rb:206:in `block in instrument'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/notifications.rb:206:in `instrument'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_controller/metal/instrumentation.rb:73:in `process_action'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_controller/metal/params_wrapper.rb:261:in `process_action'
+/usr/local/bundle/gems/activerecord-7.1.6/lib/active_record/railties/controller_runtime.rb:32:in `process_action'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/abstract_controller/base.rb:160:in `process'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_controller/metal.rb:227:in `dispatch'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_controller/metal.rb:309:in `dispatch'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/routing/route_set.rb:32:in `serve'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/journey/router.rb:51:in `block in serve'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/journey/router.rb:131:in `block in find_routes'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/journey/router.rb:124:in `each'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/journey/router.rb:124:in `find_routes'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/journey/router.rb:32:in `serve'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/routing/route_set.rb:882:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/static.rb:25:in `call'
+/usr/local/bundle/gems/rack-3.2.4/lib/rack/etag.rb:29:in `call'
+/usr/local/bundle/gems/rack-3.2.4/lib/rack/conditional_get.rb:44:in `call'
+/usr/local/bundle/gems/rack-3.2.4/lib/rack/head.rb:15:in `call'
+/usr/local/bundle/gems/activerecord-7.1.6/lib/active_record/migration.rb:655:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/callbacks.rb:101:in `run_callbacks'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/callbacks.rb:28:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/executor.rb:14:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/actionable_exceptions.rb:16:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+/usr/local/bundle/gems/railties-7.1.6/lib/rails/rack/logger.rb:37:in `call_app'
+/usr/local/bundle/gems/railties-7.1.6/lib/rails/rack/logger.rb:24:in `block in call'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/tagged_logging.rb:139:in `block in tagged'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/tagged_logging.rb:39:in `tagged'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/tagged_logging.rb:139:in `tagged'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/broadcast_logger.rb:241:in `method_missing'
+/usr/local/bundle/gems/railties-7.1.6/lib/rails/rack/logger.rb:24:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/remote_ip.rb:92:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/request_id.rb:28:in `call'
+/usr/local/bundle/gems/rack-3.2.4/lib/rack/runtime.rb:24:in `call'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/server_timing.rb:59:in `block in call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/server_timing.rb:24:in `collect_events'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/server_timing.rb:58:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/executor.rb:14:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/static.rb:25:in `call'
+/usr/local/bundle/gems/rack-3.2.4/lib/rack/sendfile.rb:131:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/host_authorization.rb:141:in `call'
+/usr/local/bundle/gems/rack-cors-3.0.0/lib/rack/cors.rb:102:in `call'
+/usr/local/bundle/gems/railties-7.1.6/lib/rails/engine.rb:536:in `call'
+/usr/local/bundle/gems/puma-6.6.1/lib/puma/configuration.rb:279:in `call'
+/usr/local/bundle/gems/puma-6.6.1/lib/puma/request.rb:99:in `block in handle_request'
+/usr/local/bundle/gems/puma-6.6.1/lib/puma/thread_pool.rb:390:in `with_force_shutdown'
+/usr/local/bundle/gems/puma-6.6.1/lib/puma/request.rb:98:in `handle_request'
+/usr/local/bundle/gems/puma-6.6.1/lib/puma/server.rb:472:in `process_client'
+/usr/local/bundle/gems/puma-6.6.1/lib/puma/server.rb:254:in `block in run'
+/usr/local/bundle/gems/puma-6.6.1/lib/puma/thread_pool.rb:167:in `block in spawn_thread'
+Completed 500 Internal Server Error in 220ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 103640)
+
+
+Started POST "/graphql" for 192.168.65.1 at 2025-12-18 20:47:48 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by GraphQLController#execute as */*
+  Parameters: {"query"=>"{ __typename }", "graphql"=>{"query"=>"{ __typename }"}}
+undefined method `input_object_class' for Mutations::BaseMutation:Class
+/app/app/graphql/mutations/base_mutation.rb:5:in `<class:BaseMutation>'
+/app/app/graphql/mutations/base_mutation.rb:2:in `<module:Mutations>'
+/app/app/graphql/mutations/base_mutation.rb:1:in `<main>'
+<internal:/usr/local/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:38:in `require'
+<internal:/usr/local/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:38:in `require'
+/usr/local/bundle/gems/bootsnap-1.19.0/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:30:in `require'
+/usr/local/bundle/gems/zeitwerk-2.7.4/lib/zeitwerk/core_ext/kernel.rb:26:in `require'
+/app/app/graphql/mutations/sign_in.rb:2:in `<module:Mutations>'
+/app/app/graphql/mutations/sign_in.rb:1:in `<main>'
+<internal:/usr/local/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:38:in `require'
+<internal:/usr/local/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:38:in `require'
+/usr/local/bundle/gems/bootsnap-1.19.0/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:30:in `require'
+/usr/local/bundle/gems/zeitwerk-2.7.4/lib/zeitwerk/core_ext/kernel.rb:26:in `require'
+/app/app/graphql/types/mutation_type.rb:4:in `<class:MutationType>'
+/app/app/graphql/types/mutation_type.rb:2:in `<module:Types>'
+/app/app/graphql/types/mutation_type.rb:1:in `<main>'
+<internal:/usr/local/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:38:in `require'
+<internal:/usr/local/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:38:in `require'
+/usr/local/bundle/gems/bootsnap-1.19.0/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:30:in `require'
+/usr/local/bundle/gems/zeitwerk-2.7.4/lib/zeitwerk/core_ext/kernel.rb:26:in `require'
+/app/app/graphql/cartify_schema.rb:2:in `<class:CartifySchema>'
+/app/app/graphql/cartify_schema.rb:1:in `<main>'
+<internal:/usr/local/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:38:in `require'
+<internal:/usr/local/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:38:in `require'
+/usr/local/bundle/gems/bootsnap-1.19.0/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:30:in `require'
+/usr/local/bundle/gems/zeitwerk-2.7.4/lib/zeitwerk/core_ext/kernel.rb:26:in `require'
+/app/app/controllers/graphql_controller.rb:16:in `execute'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_controller/metal/basic_implicit_render.rb:6:in `send_action'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/abstract_controller/base.rb:224:in `process_action'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_controller/metal/rendering.rb:165:in `process_action'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/abstract_controller/callbacks.rb:259:in `block in process_action'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/callbacks.rb:110:in `run_callbacks'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/abstract_controller/callbacks.rb:258:in `process_action'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_controller/metal/rescue.rb:25:in `process_action'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_controller/metal/instrumentation.rb:74:in `block in process_action'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/notifications.rb:206:in `block in instrument'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/notifications.rb:206:in `instrument'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_controller/metal/instrumentation.rb:73:in `process_action'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_controller/metal/params_wrapper.rb:261:in `process_action'
+/usr/local/bundle/gems/activerecord-7.1.6/lib/active_record/railties/controller_runtime.rb:32:in `process_action'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/abstract_controller/base.rb:160:in `process'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_controller/metal.rb:227:in `dispatch'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_controller/metal.rb:309:in `dispatch'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/routing/route_set.rb:32:in `serve'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/journey/router.rb:51:in `block in serve'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/journey/router.rb:131:in `block in find_routes'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/journey/router.rb:124:in `each'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/journey/router.rb:124:in `find_routes'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/journey/router.rb:32:in `serve'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/routing/route_set.rb:882:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/static.rb:25:in `call'
+/usr/local/bundle/gems/rack-3.2.4/lib/rack/etag.rb:29:in `call'
+/usr/local/bundle/gems/rack-3.2.4/lib/rack/conditional_get.rb:44:in `call'
+/usr/local/bundle/gems/rack-3.2.4/lib/rack/head.rb:15:in `call'
+/usr/local/bundle/gems/activerecord-7.1.6/lib/active_record/migration.rb:655:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/callbacks.rb:101:in `run_callbacks'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/callbacks.rb:28:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/executor.rb:14:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/actionable_exceptions.rb:16:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+/usr/local/bundle/gems/railties-7.1.6/lib/rails/rack/logger.rb:37:in `call_app'
+/usr/local/bundle/gems/railties-7.1.6/lib/rails/rack/logger.rb:24:in `block in call'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/tagged_logging.rb:139:in `block in tagged'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/tagged_logging.rb:39:in `tagged'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/tagged_logging.rb:139:in `tagged'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/broadcast_logger.rb:241:in `method_missing'
+/usr/local/bundle/gems/railties-7.1.6/lib/rails/rack/logger.rb:24:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/remote_ip.rb:92:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/request_id.rb:28:in `call'
+/usr/local/bundle/gems/rack-3.2.4/lib/rack/runtime.rb:24:in `call'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/server_timing.rb:59:in `block in call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/server_timing.rb:24:in `collect_events'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/server_timing.rb:58:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/executor.rb:14:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/static.rb:25:in `call'
+/usr/local/bundle/gems/rack-3.2.4/lib/rack/sendfile.rb:131:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/host_authorization.rb:141:in `call'
+/usr/local/bundle/gems/rack-cors-3.0.0/lib/rack/cors.rb:102:in `call'
+/usr/local/bundle/gems/railties-7.1.6/lib/rails/engine.rb:536:in `call'
+/usr/local/bundle/gems/puma-6.6.1/lib/puma/configuration.rb:279:in `call'
+/usr/local/bundle/gems/puma-6.6.1/lib/puma/request.rb:99:in `block in handle_request'
+/usr/local/bundle/gems/puma-6.6.1/lib/puma/thread_pool.rb:390:in `with_force_shutdown'
+/usr/local/bundle/gems/puma-6.6.1/lib/puma/request.rb:98:in `handle_request'
+/usr/local/bundle/gems/puma-6.6.1/lib/puma/server.rb:472:in `process_client'
+/usr/local/bundle/gems/puma-6.6.1/lib/puma/server.rb:254:in `block in run'
+/usr/local/bundle/gems/puma-6.6.1/lib/puma/thread_pool.rb:167:in `block in spawn_thread'
+Completed 500 Internal Server Error in 111ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 49189)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/graphql" for 192.168.65.1 at 2025-12-18 20:50:51 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by GraphqlController#execute as */*
+  Parameters: {"query"=>"{ __typename }", "graphql"=>{"query"=>"{ __typename }"}}
+undefined method `input_object_class' for Mutations::BaseMutation:Class
+/app/app/graphql/mutations/base_mutation.rb:5:in `<class:BaseMutation>'
+/app/app/graphql/mutations/base_mutation.rb:2:in `<module:Mutations>'
+/app/app/graphql/mutations/base_mutation.rb:1:in `<main>'
+<internal:/usr/local/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:38:in `require'
+<internal:/usr/local/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:38:in `require'
+/usr/local/bundle/gems/bootsnap-1.19.0/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:30:in `require'
+/usr/local/bundle/gems/zeitwerk-2.7.4/lib/zeitwerk/core_ext/kernel.rb:26:in `require'
+/app/app/graphql/mutations/sign_in.rb:2:in `<module:Mutations>'
+/app/app/graphql/mutations/sign_in.rb:1:in `<main>'
+<internal:/usr/local/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:38:in `require'
+<internal:/usr/local/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:38:in `require'
+/usr/local/bundle/gems/bootsnap-1.19.0/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:30:in `require'
+/usr/local/bundle/gems/zeitwerk-2.7.4/lib/zeitwerk/core_ext/kernel.rb:26:in `require'
+/app/app/graphql/types/mutation_type.rb:4:in `<class:MutationType>'
+/app/app/graphql/types/mutation_type.rb:2:in `<module:Types>'
+/app/app/graphql/types/mutation_type.rb:1:in `<main>'
+<internal:/usr/local/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:38:in `require'
+<internal:/usr/local/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:38:in `require'
+/usr/local/bundle/gems/bootsnap-1.19.0/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:30:in `require'
+/usr/local/bundle/gems/zeitwerk-2.7.4/lib/zeitwerk/core_ext/kernel.rb:26:in `require'
+/app/app/graphql/cartify_schema.rb:2:in `<class:CartifySchema>'
+/app/app/graphql/cartify_schema.rb:1:in `<main>'
+<internal:/usr/local/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:38:in `require'
+<internal:/usr/local/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:38:in `require'
+/usr/local/bundle/gems/bootsnap-1.19.0/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:30:in `require'
+/usr/local/bundle/gems/zeitwerk-2.7.4/lib/zeitwerk/core_ext/kernel.rb:26:in `require'
+/app/app/controllers/graphql_controller.rb:16:in `execute'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_controller/metal/basic_implicit_render.rb:6:in `send_action'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/abstract_controller/base.rb:224:in `process_action'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_controller/metal/rendering.rb:165:in `process_action'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/abstract_controller/callbacks.rb:259:in `block in process_action'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/callbacks.rb:110:in `run_callbacks'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/abstract_controller/callbacks.rb:258:in `process_action'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_controller/metal/rescue.rb:25:in `process_action'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_controller/metal/instrumentation.rb:74:in `block in process_action'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/notifications.rb:206:in `block in instrument'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/notifications.rb:206:in `instrument'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_controller/metal/instrumentation.rb:73:in `process_action'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_controller/metal/params_wrapper.rb:261:in `process_action'
+/usr/local/bundle/gems/activerecord-7.1.6/lib/active_record/railties/controller_runtime.rb:32:in `process_action'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/abstract_controller/base.rb:160:in `process'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_controller/metal.rb:227:in `dispatch'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_controller/metal.rb:309:in `dispatch'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/routing/route_set.rb:32:in `serve'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/journey/router.rb:51:in `block in serve'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/journey/router.rb:131:in `block in find_routes'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/journey/router.rb:124:in `each'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/journey/router.rb:124:in `find_routes'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/journey/router.rb:32:in `serve'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/routing/route_set.rb:882:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/static.rb:25:in `call'
+/usr/local/bundle/gems/rack-3.2.4/lib/rack/etag.rb:29:in `call'
+/usr/local/bundle/gems/rack-3.2.4/lib/rack/conditional_get.rb:44:in `call'
+/usr/local/bundle/gems/rack-3.2.4/lib/rack/head.rb:15:in `call'
+/usr/local/bundle/gems/activerecord-7.1.6/lib/active_record/migration.rb:655:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/callbacks.rb:101:in `run_callbacks'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/callbacks.rb:28:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/executor.rb:14:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/actionable_exceptions.rb:16:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+/usr/local/bundle/gems/railties-7.1.6/lib/rails/rack/logger.rb:37:in `call_app'
+/usr/local/bundle/gems/railties-7.1.6/lib/rails/rack/logger.rb:24:in `block in call'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/tagged_logging.rb:139:in `block in tagged'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/tagged_logging.rb:39:in `tagged'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/tagged_logging.rb:139:in `tagged'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/broadcast_logger.rb:241:in `method_missing'
+/usr/local/bundle/gems/railties-7.1.6/lib/rails/rack/logger.rb:24:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/remote_ip.rb:92:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/request_id.rb:28:in `call'
+/usr/local/bundle/gems/rack-3.2.4/lib/rack/runtime.rb:24:in `call'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/server_timing.rb:59:in `block in call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/server_timing.rb:24:in `collect_events'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/server_timing.rb:58:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/executor.rb:14:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/static.rb:25:in `call'
+/usr/local/bundle/gems/rack-3.2.4/lib/rack/sendfile.rb:131:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/host_authorization.rb:141:in `call'
+/usr/local/bundle/gems/rack-cors-3.0.0/lib/rack/cors.rb:102:in `call'
+/usr/local/bundle/gems/railties-7.1.6/lib/rails/engine.rb:536:in `call'
+/usr/local/bundle/gems/puma-6.6.1/lib/puma/configuration.rb:279:in `call'
+/usr/local/bundle/gems/puma-6.6.1/lib/puma/request.rb:99:in `block in handle_request'
+/usr/local/bundle/gems/puma-6.6.1/lib/puma/thread_pool.rb:390:in `with_force_shutdown'
+/usr/local/bundle/gems/puma-6.6.1/lib/puma/request.rb:98:in `handle_request'
+/usr/local/bundle/gems/puma-6.6.1/lib/puma/server.rb:472:in `process_client'
+/usr/local/bundle/gems/puma-6.6.1/lib/puma/server.rb:254:in `block in run'
+/usr/local/bundle/gems/puma-6.6.1/lib/puma/thread_pool.rb:167:in `block in spawn_thread'
+Completed 500 Internal Server Error in 99ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 49178)
+
+
+Started POST "/graphql" for 192.168.65.1 at 2025-12-18 20:53:24 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by GraphqlController#execute as */*
+  Parameters: {"query"=>"{ __typename }", "graphql"=>{"query"=>"{ __typename }"}}
+undefined method `input_object_class' for Mutations::BaseMutation:Class
+/app/app/graphql/mutations/base_mutation.rb:5:in `<class:BaseMutation>'
+/app/app/graphql/mutations/base_mutation.rb:2:in `<module:Mutations>'
+/app/app/graphql/mutations/base_mutation.rb:1:in `<main>'
+<internal:/usr/local/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:38:in `require'
+<internal:/usr/local/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:38:in `require'
+/usr/local/bundle/gems/bootsnap-1.19.0/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:30:in `require'
+/usr/local/bundle/gems/zeitwerk-2.7.4/lib/zeitwerk/core_ext/kernel.rb:26:in `require'
+/app/app/graphql/mutations/sign_in.rb:2:in `<module:Mutations>'
+/app/app/graphql/mutations/sign_in.rb:1:in `<main>'
+<internal:/usr/local/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:38:in `require'
+<internal:/usr/local/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:38:in `require'
+/usr/local/bundle/gems/bootsnap-1.19.0/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:30:in `require'
+/usr/local/bundle/gems/zeitwerk-2.7.4/lib/zeitwerk/core_ext/kernel.rb:26:in `require'
+/app/app/graphql/types/mutation_type.rb:4:in `<class:MutationType>'
+/app/app/graphql/types/mutation_type.rb:2:in `<module:Types>'
+/app/app/graphql/types/mutation_type.rb:1:in `<main>'
+<internal:/usr/local/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:38:in `require'
+<internal:/usr/local/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:38:in `require'
+/usr/local/bundle/gems/bootsnap-1.19.0/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:30:in `require'
+/usr/local/bundle/gems/zeitwerk-2.7.4/lib/zeitwerk/core_ext/kernel.rb:26:in `require'
+/app/app/graphql/cartify_schema.rb:2:in `<class:CartifySchema>'
+/app/app/graphql/cartify_schema.rb:1:in `<main>'
+<internal:/usr/local/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:38:in `require'
+<internal:/usr/local/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:38:in `require'
+/usr/local/bundle/gems/bootsnap-1.19.0/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:30:in `require'
+/usr/local/bundle/gems/zeitwerk-2.7.4/lib/zeitwerk/core_ext/kernel.rb:26:in `require'
+/app/app/controllers/graphql_controller.rb:16:in `execute'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_controller/metal/basic_implicit_render.rb:6:in `send_action'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/abstract_controller/base.rb:224:in `process_action'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_controller/metal/rendering.rb:165:in `process_action'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/abstract_controller/callbacks.rb:259:in `block in process_action'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/callbacks.rb:110:in `run_callbacks'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/abstract_controller/callbacks.rb:258:in `process_action'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_controller/metal/rescue.rb:25:in `process_action'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_controller/metal/instrumentation.rb:74:in `block in process_action'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/notifications.rb:206:in `block in instrument'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/notifications.rb:206:in `instrument'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_controller/metal/instrumentation.rb:73:in `process_action'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_controller/metal/params_wrapper.rb:261:in `process_action'
+/usr/local/bundle/gems/activerecord-7.1.6/lib/active_record/railties/controller_runtime.rb:32:in `process_action'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/abstract_controller/base.rb:160:in `process'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_controller/metal.rb:227:in `dispatch'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_controller/metal.rb:309:in `dispatch'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/routing/route_set.rb:32:in `serve'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/journey/router.rb:51:in `block in serve'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/journey/router.rb:131:in `block in find_routes'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/journey/router.rb:124:in `each'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/journey/router.rb:124:in `find_routes'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/journey/router.rb:32:in `serve'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/routing/route_set.rb:882:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/static.rb:25:in `call'
+/usr/local/bundle/gems/rack-3.2.4/lib/rack/etag.rb:29:in `call'
+/usr/local/bundle/gems/rack-3.2.4/lib/rack/conditional_get.rb:44:in `call'
+/usr/local/bundle/gems/rack-3.2.4/lib/rack/head.rb:15:in `call'
+/usr/local/bundle/gems/activerecord-7.1.6/lib/active_record/migration.rb:655:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/callbacks.rb:101:in `run_callbacks'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/callbacks.rb:28:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/executor.rb:14:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/actionable_exceptions.rb:16:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+/usr/local/bundle/gems/railties-7.1.6/lib/rails/rack/logger.rb:37:in `call_app'
+/usr/local/bundle/gems/railties-7.1.6/lib/rails/rack/logger.rb:24:in `block in call'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/tagged_logging.rb:139:in `block in tagged'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/tagged_logging.rb:39:in `tagged'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/tagged_logging.rb:139:in `tagged'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/broadcast_logger.rb:241:in `method_missing'
+/usr/local/bundle/gems/railties-7.1.6/lib/rails/rack/logger.rb:24:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/remote_ip.rb:92:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/request_id.rb:28:in `call'
+/usr/local/bundle/gems/rack-3.2.4/lib/rack/runtime.rb:24:in `call'
+/usr/local/bundle/gems/activesupport-7.1.6/lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/server_timing.rb:59:in `block in call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/server_timing.rb:24:in `collect_events'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/server_timing.rb:58:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/executor.rb:14:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/static.rb:25:in `call'
+/usr/local/bundle/gems/rack-3.2.4/lib/rack/sendfile.rb:131:in `call'
+/usr/local/bundle/gems/actionpack-7.1.6/lib/action_dispatch/middleware/host_authorization.rb:141:in `call'
+/usr/local/bundle/gems/rack-cors-3.0.0/lib/rack/cors.rb:102:in `call'
+/usr/local/bundle/gems/railties-7.1.6/lib/rails/engine.rb:536:in `call'
+/usr/local/bundle/gems/puma-6.6.1/lib/puma/configuration.rb:279:in `call'
+/usr/local/bundle/gems/puma-6.6.1/lib/puma/request.rb:99:in `block in handle_request'
+/usr/local/bundle/gems/puma-6.6.1/lib/puma/thread_pool.rb:390:in `with_force_shutdown'
+/usr/local/bundle/gems/puma-6.6.1/lib/puma/request.rb:98:in `handle_request'
+/usr/local/bundle/gems/puma-6.6.1/lib/puma/server.rb:472:in `process_client'
+/usr/local/bundle/gems/puma-6.6.1/lib/puma/server.rb:254:in `block in run'
+/usr/local/bundle/gems/puma-6.6.1/lib/puma/thread_pool.rb:167:in `block in spawn_thread'
+Completed 500 Internal Server Error in 103ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 49179)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/graphql" for 192.168.65.1 at 2025-12-18 21:02:07 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by GraphqlController#execute as */*
+  Parameters: {"query"=>"mutation { signIn(input: { email: \"demo@cartify.dev\", password: \"password123\" }) { token user { id email } errors } }", "graphql"=>{"query"=>"mutation { signIn(input: { email: \"demo@cartify.dev\", password: \"password123\" }) { token user { id email } errors } }"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "demo@cartify.dev"], ["LIMIT", 1]]
+  ↳ app/graphql/mutations/sign_in.rb:11:in `resolve'
+Completed 200 OK in 426ms (Views: 0.1ms | ActiveRecord: 5.0ms | Allocations: 125011)
+
+
+Started POST "/graphql" for 192.168.65.1 at 2025-12-18 21:03:45 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by GraphqlController#execute as */*
+  Parameters: {"operationName"=>"SignIn", "variables"=>{"email"=>"demo@cartify.dev", "password"=>"[FILTERED]"}, "query"=>"mutation SignIn($email: String!, $password: String!) {\n  signIn(email: $email, password: $password) {\n    user {\n      id\n      email\n      name\n      stores {\n        id\n        name\n        slug\n        __typename\n      }\n      __typename\n    }\n    token\n    errors\n    __typename\n  }\n}", "graphql"=>{"operationName"=>"SignIn", "variables"=>{"email"=>"demo@cartify.dev", "password"=>"[FILTERED]"}, "query"=>"mutation SignIn($email: String!, $password: String!) {\n  signIn(email: $email, password: $password) {\n    user {\n      id\n      email\n      name\n      stores {\n        id\n        name\n        slug\n        __typename\n      }\n      __typename\n    }\n    token\n    errors\n    __typename\n  }\n}"}}
+Completed 200 OK in 152ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 84600)
+
+
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (5184.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "cartify_development"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (13.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (5186.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "cartify_development"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (14.9ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (5170.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS "cartify_development"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (13.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (5182.5ms)[0m  [1m[35mDROP DATABASE IF EXISTS "cartify_development"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (13.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35m (5195.7ms)[0m  [1m[35mDROP DATABASE IF EXISTS "cartify_development"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m

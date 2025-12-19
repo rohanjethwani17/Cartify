@@ -12,8 +12,9 @@ done
 
 # Run migrations
 echo "Running database migrations..."
-bundle exec rails db:prepare
+./bin/rails db:prepare
 
 # Start the server
 echo "Starting Rails server..."
-exec bundle exec rails server -b 0.0.0.0 -p 3000
+exec ./bin/rails server -b 0.0.0.0 -p 3000
+

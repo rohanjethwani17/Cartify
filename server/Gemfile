@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '3.2.2'
+ruby '>= 3.2.0', '< 3.3.0'
 
 # Rails
 gem 'rails', '~> 7.1.0'
@@ -42,6 +42,7 @@ group :development do
   gem 'rubocop', '~> 1.59'
   gem 'rubocop-rails', '~> 2.23'
   gem 'rubocop-rspec', '~> 2.25'
+  gem 'graphiql-rails', '~> 1.9'
 end
 
 group :test do

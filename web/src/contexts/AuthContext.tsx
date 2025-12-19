@@ -26,8 +26,8 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 const SIGN_IN_MUTATION = gql`
-  mutation SignIn($email: String!, $password: String!) {
-    signIn(email: $email, password: $password) {
+  mutation SignIn($input: SignInInput!) {
+    signIn(input: $input) {
       user {
         id
         email
@@ -62,10 +62,10 @@ const ME_QUERY = gql`
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [token, setToken] = useState<string | null>(() => localStorage.getItem('cartify_token'))
-  const [currentStoreId, setCurrentStoreId] = useState<string | null>(() => 
+  const [currentStoreId, setCurrentStoreId] = useState<string | null>(() =>
     localStorage.getItem('cartify_store_id')
   )
-  
+
   const { loading, data } = useQuery(ME_QUERY, {
     skip: !token,
     onCompleted: (data) => {
@@ -85,35 +85,35 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setToken(null)
     },
   })
-  
+
   const [signInMutation] = useMutation(SIGN_IN_MUTATION)
-  
+
   const signIn = async (email: string, password: string) => {
     try {
-      const { data } = await signInMutation({ variables: { email, password } })
-      
+      const { data } = await signInMutation({ variables: { input: { email, password } } })
+
       if (data?.signIn?.token) {
         const { token, user } = data.signIn
         localStorage.setItem('cartify_token', token)
         setToken(token)
         setUser(user)
-        
+
         // Set default store
         if (user.stores.length > 0) {
           const defaultStoreId = user.stores[0].id
           setCurrentStoreId(defaultStoreId)
           localStorage.setItem('cartify_store_id', defaultStoreId)
         }
-        
+
         return { success: true, errors: [] }
       }
-      
+
       return { success: false, errors: data?.signIn?.errors || ['Sign in failed'] }
     } catch (error) {
       return { success: false, errors: ['An error occurred during sign in'] }
     }
   }
-  
+
   const signOut = () => {
     localStorage.removeItem('cartify_token')
     localStorage.removeItem('cartify_store_id')
@@ -122,18 +122,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setCurrentStoreId(null)
     apolloClient.clearStore()
   }
-  
+
   const handleSetCurrentStoreId = (id: string) => {
     setCurrentStoreId(id)
     localStorage.setItem('cartify_store_id', id)
   }
-  
+
   useEffect(() => {
     if (data?.me) {
       setUser(data.me)
     }
   }, [data])
-  
+
   return (
     <AuthContext.Provider
       value={{
