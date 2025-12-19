@@ -2,6 +2,12 @@
 
 A multi-tenant commerce operations platform (mini Shopify backend + admin) built with Ruby on Rails, GraphQL, React, and TypeScript.
 
+## 🎬 Demo
+
+![Cartify Demo - Dashboard, Orders, and Inventory](docs/demo.webp)
+
+*Demo showing: Login → Dashboard with live orders feed → Orders list → Inventory management*
+
 ## Architecture
 
 ```

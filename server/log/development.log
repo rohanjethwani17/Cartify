@@ -2042,3 +2042,163 @@ Started GET "/cable" for 192.168.65.1 at 2025-12-19 10:06:42 +0000
 Started GET "/cable" [WebSocket] for 192.168.65.1 at 2025-12-19 10:06:42 +0000
 Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
 Finished "/cable" [WebSocket] for 192.168.65.1 at 2025-12-19 10:06:42 +0000
+Started POST "/graphql" for 192.168.65.1 at 2025-12-19 10:15:56 +0000
+Processing by GraphqlController#execute as */*
+  Parameters: {"operationName"=>"Me", "variables"=>{}, "query"=>"query Me {\n  me {\n    id\n    email\n    name\n    stores {\n      id\n      name\n      slug\n      __typename\n    }\n    __typename\n  }\n}", "graphql"=>{"operationName"=>"Me", "variables"=>{}, "query"=>"query Me {\n  me {\n    id\n    email\n    name\n    stores {\n      id\n      name\n      slug\n      __typename\n    }\n    __typename\n  }\n}"}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", "4a6a4aab-8b61-406b-ad22-57c64f19e3bf"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:49:in `from_jwt'
+  [1m[36mStoreMembership Load (0.3ms)[0m  [1m[34mSELECT "store_memberships".* FROM "store_memberships" WHERE "store_memberships"."user_id" = $1[0m  [["user_id", "4a6a4aab-8b61-406b-ad22-57c64f19e3bf"]]
+  ↳ app/graphql/sources/association_source.rb:12:in `fetch'
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = $1[0m  [["id", "aa9db840-4ede-4258-9ffc-1b3643463cda"]]
+  ↳ app/graphql/sources/association_source.rb:12:in `fetch'
+Completed 200 OK in 19ms (Views: 0.1ms | ActiveRecord: 4.4ms | Allocations: 6176)
+
+
+Started POST "/graphql" for 192.168.65.1 at 2025-12-19 10:15:56 +0000
+Started GET "/cable" for 192.168.65.1 at 2025-12-19 10:15:56 +0000
+Processing by GraphqlController#execute as */*
+  Parameters: {"operationName"=>"Dashboard", "variables"=>{"storeId"=>"aa9db840-4ede-4258-9ffc-1b3643463cda"}, "query"=>"query Dashboard($storeId: ID!) {\n  store(id: $storeId) {\n    id\n    name\n    orderAgingSummary {\n      zeroToOneDay\n      twoToThreeDays\n      fourToSevenDays\n      eightPlusDays\n      __typename\n    }\n    inventoryAlerts(reviewed: false) {\n      id\n      threshold\n      currentLevel\n      createdAt\n      variant {\n        id\n        displayName\n        sku\n        __typename\n      }\n      location {\n        id\n        name\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n  orders(storeId: $storeId, first: 10) {\n    edges {\n      node {\n        id\n        orderNumber\n        email\n        totalPrice\n        status\n        fulfillmentStatus\n        createdAt\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}", "graphql"=>{"operationName"=>"Dashboard", "variables"=>{"storeId"=>"aa9db840-4ede-4258-9ffc-1b3643463cda"}, "query"=>"query Dashboard($storeId: ID!) {\n  store(id: $storeId) {\n    id\n    name\n    orderAgingSummary {\n      zeroToOneDay\n      twoToThreeDays\n      fourToSevenDays\n      eightPlusDays\n      __typename\n    }\n    inventoryAlerts(reviewed: false) {\n      id\n      threshold\n      currentLevel\n      createdAt\n      variant {\n        id\n        displayName\n        sku\n        __typename\n      }\n      location {\n        id\n        name\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n  orders(storeId: $storeId, first: 10) {\n    edges {\n      node {\n        id\n        orderNumber\n        email\n        totalPrice\n        status\n        fulfillmentStatus\n        createdAt\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", "4a6a4aab-8b61-406b-ad22-57c64f19e3bf"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:49:in `from_jwt'
+Started GET "/cable" [WebSocket] for 192.168.65.1 at 2025-12-19 10:15:56 +0000
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+  [1m[36mStore Load (0.5ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = $1 LIMIT $2[0m  [["id", "aa9db840-4ede-4258-9ffc-1b3643463cda"], ["LIMIT", 1]]
+  ↳ app/graphql/types/query_type.rb:67:in `orders'
+Finished "/cable" [WebSocket] for 192.168.65.1 at 2025-12-19 10:15:56 +0000
+  [1m[36mStoreMembership Load (0.2ms)[0m  [1m[34mSELECT "store_memberships".* FROM "store_memberships" WHERE "store_memberships"."user_id" = $1 AND "store_memberships"."store_id" = $2 LIMIT $3[0m  [["user_id", "4a6a4aab-8b61-406b-ad22-57c64f19e3bf"], ["store_id", "aa9db840-4ede-4258-9ffc-1b3643463cda"], ["LIMIT", 1]]
+  ↳ app/policies/application_policy.rb:48:in `membership'
+  [1m[36mCACHE Store Load (0.0ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = $1 LIMIT $2[0m  [["id", "aa9db840-4ede-4258-9ffc-1b3643463cda"], ["LIMIT", 1]]
+  ↳ app/graphql/types/query_type.rb:49:in `store'
+  [1m[36mCACHE StoreMembership Load (0.0ms)[0m  [1m[34mSELECT "store_memberships".* FROM "store_memberships" WHERE "store_memberships"."user_id" = $1 AND "store_memberships"."store_id" = $2 LIMIT $3[0m  [["user_id", "4a6a4aab-8b61-406b-ad22-57c64f19e3bf"], ["store_id", "aa9db840-4ede-4258-9ffc-1b3643463cda"], ["LIMIT", 1]]
+  ↳ app/policies/application_policy.rb:48:in `membership'
+  [1m[36mOrder Load (0.7ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."store_id" = $1 ORDER BY "orders"."created_at" DESC LIMIT $2 OFFSET $3[0m  [["store_id", "aa9db840-4ede-4258-9ffc-1b3643463cda"], ["LIMIT", 10], ["OFFSET", 0]]
+  [1m[36mOrder Count (1.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "orders" WHERE "orders"."store_id" = $1 AND "orders"."fulfillment_status" = $2 AND "orders"."created_at" >= $3[0m  [["store_id", "aa9db840-4ede-4258-9ffc-1b3643463cda"], ["fulfillment_status", "unfulfilled"], ["created_at", "2025-12-18 10:15:57.001369"]]
+  ↳ app/graphql/types/store_type.rb:63:in `order_aging_summary'
+  [1m[36mOrder Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "orders" WHERE "orders"."store_id" = $1 AND "orders"."fulfillment_status" = $2 AND "orders"."created_at" BETWEEN $3 AND $4[0m  [["store_id", "aa9db840-4ede-4258-9ffc-1b3643463cda"], ["fulfillment_status", "unfulfilled"], ["created_at", "2025-12-16 10:15:57.003606"], ["created_at", "2025-12-18 10:15:57.003650"]]
+  ↳ app/graphql/types/store_type.rb:64:in `order_aging_summary'
+  [1m[36mOrder Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "orders" WHERE "orders"."store_id" = $1 AND "orders"."fulfillment_status" = $2 AND "orders"."created_at" BETWEEN $3 AND $4[0m  [["store_id", "aa9db840-4ede-4258-9ffc-1b3643463cda"], ["fulfillment_status", "unfulfilled"], ["created_at", "2025-12-12 10:15:57.004690"], ["created_at", "2025-12-16 10:15:57.004720"]]
+  ↳ app/graphql/types/store_type.rb:65:in `order_aging_summary'
+  [1m[36mOrder Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "orders" WHERE "orders"."store_id" = $1 AND "orders"."fulfillment_status" = $2 AND "orders"."created_at" <= $3[0m  [["store_id", "aa9db840-4ede-4258-9ffc-1b3643463cda"], ["fulfillment_status", "unfulfilled"], ["created_at", "2025-12-12 10:15:57.005556"]]
+  ↳ app/graphql/types/store_type.rb:66:in `order_aging_summary'
+  [1m[36mInventoryAlert Load (0.5ms)[0m  [1m[34mSELECT "inventory_alerts".* FROM "inventory_alerts" WHERE "inventory_alerts"."store_id" = $1 AND "inventory_alerts"."reviewed" = $2 ORDER BY "inventory_alerts"."created_at" DESC[0m  [["store_id", "aa9db840-4ede-4258-9ffc-1b3643463cda"], ["reviewed", false]]
+Completed 200 OK in 19ms (Views: 0.2ms | ActiveRecord: 3.9ms | Allocations: 8733)
+
+
+Started GET "/cable" for 192.168.65.1 at 2025-12-19 10:16:00 +0000
+Started GET "/cable" [WebSocket] for 192.168.65.1 at 2025-12-19 10:16:00 +0000
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+Finished "/cable" [WebSocket] for 192.168.65.1 at 2025-12-19 10:16:00 +0000
+Started GET "/cable" for 192.168.65.1 at 2025-12-19 10:16:03 +0000
+Started GET "/cable" [WebSocket] for 192.168.65.1 at 2025-12-19 10:16:03 +0000
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+Finished "/cable" [WebSocket] for 192.168.65.1 at 2025-12-19 10:16:03 +0000
+Started POST "/graphql" for 192.168.65.1 at 2025-12-19 10:16:08 +0000
+Processing by GraphqlController#execute as */*
+  Parameters: {"operationName"=>"Me", "variables"=>{}, "query"=>"query Me {\n  me {\n    id\n    email\n    name\n    stores {\n      id\n      name\n      slug\n      __typename\n    }\n    __typename\n  }\n}", "graphql"=>{"operationName"=>"Me", "variables"=>{}, "query"=>"query Me {\n  me {\n    id\n    email\n    name\n    stores {\n      id\n      name\n      slug\n      __typename\n    }\n    __typename\n  }\n}"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", "4a6a4aab-8b61-406b-ad22-57c64f19e3bf"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:49:in `from_jwt'
+  [1m[36mStoreMembership Load (0.4ms)[0m  [1m[34mSELECT "store_memberships".* FROM "store_memberships" WHERE "store_memberships"."user_id" = $1[0m  [["user_id", "4a6a4aab-8b61-406b-ad22-57c64f19e3bf"]]
+  ↳ app/graphql/sources/association_source.rb:12:in `fetch'
+  [1m[36mStore Load (0.4ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = $1[0m  [["id", "aa9db840-4ede-4258-9ffc-1b3643463cda"]]
+  ↳ app/graphql/sources/association_source.rb:12:in `fetch'
+Completed 200 OK in 6ms (Views: 0.1ms | ActiveRecord: 1.1ms | Allocations: 2853)
+
+
+Started POST "/graphql" for 192.168.65.1 at 2025-12-19 10:16:08 +0000
+Started GET "/cable" for 192.168.65.1 at 2025-12-19 10:16:08 +0000
+Processing by GraphqlController#execute as */*
+  Parameters: {"operationName"=>"Dashboard", "variables"=>{"storeId"=>"aa9db840-4ede-4258-9ffc-1b3643463cda"}, "query"=>"query Dashboard($storeId: ID!) {\n  store(id: $storeId) {\n    id\n    name\n    orderAgingSummary {\n      zeroToOneDay\n      twoToThreeDays\n      fourToSevenDays\n      eightPlusDays\n      __typename\n    }\n    inventoryAlerts(reviewed: false) {\n      id\n      threshold\n      currentLevel\n      createdAt\n      variant {\n        id\n        displayName\n        sku\n        __typename\n      }\n      location {\n        id\n        name\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n  orders(storeId: $storeId, first: 10) {\n    edges {\n      node {\n        id\n        orderNumber\n        email\n        totalPrice\n        status\n        fulfillmentStatus\n        createdAt\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}", "graphql"=>{"operationName"=>"Dashboard", "variables"=>{"storeId"=>"aa9db840-4ede-4258-9ffc-1b3643463cda"}, "query"=>"query Dashboard($storeId: ID!) {\n  store(id: $storeId) {\n    id\n    name\n    orderAgingSummary {\n      zeroToOneDay\n      twoToThreeDays\n      fourToSevenDays\n      eightPlusDays\n      __typename\n    }\n    inventoryAlerts(reviewed: false) {\n      id\n      threshold\n      currentLevel\n      createdAt\n      variant {\n        id\n        displayName\n        sku\n        __typename\n      }\n      location {\n        id\n        name\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n  orders(storeId: $storeId, first: 10) {\n    edges {\n      node {\n        id\n        orderNumber\n        email\n        totalPrice\n        status\n        fulfillmentStatus\n        createdAt\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", "4a6a4aab-8b61-406b-ad22-57c64f19e3bf"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:49:in `from_jwt'
+Started GET "/cable" [WebSocket] for 192.168.65.1 at 2025-12-19 10:16:08 +0000
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+  [1m[36mStore Load (0.4ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = $1 LIMIT $2[0m  [["id", "aa9db840-4ede-4258-9ffc-1b3643463cda"], ["LIMIT", 1]]
+  ↳ app/graphql/types/query_type.rb:67:in `orders'
+Finished "/cable" [WebSocket] for 192.168.65.1 at 2025-12-19 10:16:08 +0000
+  [1m[36mStoreMembership Load (0.2ms)[0m  [1m[34mSELECT "store_memberships".* FROM "store_memberships" WHERE "store_memberships"."user_id" = $1 AND "store_memberships"."store_id" = $2 LIMIT $3[0m  [["user_id", "4a6a4aab-8b61-406b-ad22-57c64f19e3bf"], ["store_id", "aa9db840-4ede-4258-9ffc-1b3643463cda"], ["LIMIT", 1]]
+  ↳ app/policies/application_policy.rb:48:in `membership'
+  [1m[36mCACHE Store Load (0.0ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = $1 LIMIT $2[0m  [["id", "aa9db840-4ede-4258-9ffc-1b3643463cda"], ["LIMIT", 1]]
+  ↳ app/graphql/types/query_type.rb:49:in `store'
+  [1m[36mCACHE StoreMembership Load (0.0ms)[0m  [1m[34mSELECT "store_memberships".* FROM "store_memberships" WHERE "store_memberships"."user_id" = $1 AND "store_memberships"."store_id" = $2 LIMIT $3[0m  [["user_id", "4a6a4aab-8b61-406b-ad22-57c64f19e3bf"], ["store_id", "aa9db840-4ede-4258-9ffc-1b3643463cda"], ["LIMIT", 1]]
+  ↳ app/policies/application_policy.rb:48:in `membership'
+  [1m[36mOrder Load (0.4ms)[0m  [1m[34mSELECT "orders".* FROM "orders" WHERE "orders"."store_id" = $1 ORDER BY "orders"."created_at" DESC LIMIT $2 OFFSET $3[0m  [["store_id", "aa9db840-4ede-4258-9ffc-1b3643463cda"], ["LIMIT", 10], ["OFFSET", 0]]
+  [1m[36mOrder Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "orders" WHERE "orders"."store_id" = $1 AND "orders"."fulfillment_status" = $2 AND "orders"."created_at" >= $3[0m  [["store_id", "aa9db840-4ede-4258-9ffc-1b3643463cda"], ["fulfillment_status", "unfulfilled"], ["created_at", "2025-12-18 10:16:08.465898"]]
+  ↳ app/graphql/types/store_type.rb:63:in `order_aging_summary'
+  [1m[36mOrder Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "orders" WHERE "orders"."store_id" = $1 AND "orders"."fulfillment_status" = $2 AND "orders"."created_at" BETWEEN $3 AND $4[0m  [["store_id", "aa9db840-4ede-4258-9ffc-1b3643463cda"], ["fulfillment_status", "unfulfilled"], ["created_at", "2025-12-16 10:16:08.467061"], ["created_at", "2025-12-18 10:16:08.467099"]]
+  ↳ app/graphql/types/store_type.rb:64:in `order_aging_summary'
+  [1m[36mOrder Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "orders" WHERE "orders"."store_id" = $1 AND "orders"."fulfillment_status" = $2 AND "orders"."created_at" BETWEEN $3 AND $4[0m  [["store_id", "aa9db840-4ede-4258-9ffc-1b3643463cda"], ["fulfillment_status", "unfulfilled"], ["created_at", "2025-12-12 10:16:08.468383"], ["created_at", "2025-12-16 10:16:08.468410"]]
+  ↳ app/graphql/types/store_type.rb:65:in `order_aging_summary'
+  [1m[36mOrder Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "orders" WHERE "orders"."store_id" = $1 AND "orders"."fulfillment_status" = $2 AND "orders"."created_at" <= $3[0m  [["store_id", "aa9db840-4ede-4258-9ffc-1b3643463cda"], ["fulfillment_status", "unfulfilled"], ["created_at", "2025-12-12 10:16:08.469614"]]
+  ↳ app/graphql/types/store_type.rb:66:in `order_aging_summary'
+  [1m[36mInventoryAlert Load (0.2ms)[0m  [1m[34mSELECT "inventory_alerts".* FROM "inventory_alerts" WHERE "inventory_alerts"."store_id" = $1 AND "inventory_alerts"."reviewed" = $2 ORDER BY "inventory_alerts"."created_at" DESC[0m  [["store_id", "aa9db840-4ede-4258-9ffc-1b3643463cda"], ["reviewed", false]]
+Completed 200 OK in 15ms (Views: 0.1ms | ActiveRecord: 2.8ms | Allocations: 8582)
+
+
+Started GET "/cable" for 192.168.65.1 at 2025-12-19 10:16:12 +0000
+Started GET "/cable" [WebSocket] for 192.168.65.1 at 2025-12-19 10:16:12 +0000
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+Finished "/cable" [WebSocket] for 192.168.65.1 at 2025-12-19 10:16:12 +0000
+Started GET "/cable" for 192.168.65.1 at 2025-12-19 10:16:17 +0000
+Started GET "/cable" [WebSocket] for 192.168.65.1 at 2025-12-19 10:16:17 +0000
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+Finished "/cable" [WebSocket] for 192.168.65.1 at 2025-12-19 10:16:17 +0000
+Started GET "/cable" for 192.168.65.1 at 2025-12-19 10:16:22 +0000
+Started GET "/cable" [WebSocket] for 192.168.65.1 at 2025-12-19 10:16:22 +0000
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+Finished "/cable" [WebSocket] for 192.168.65.1 at 2025-12-19 10:16:22 +0000
+Started POST "/graphql" for 192.168.65.1 at 2025-12-19 10:16:22 +0000
+Processing by GraphqlController#execute as */*
+  Parameters: {"operationName"=>"Orders", "variables"=>{"storeId"=>"aa9db840-4ede-4258-9ffc-1b3643463cda", "first"=>20}, "query"=>"query Orders($storeId: ID!, $first: Int, $after: String, $search: String, $status: String) {\n  orders(\n    storeId: $storeId\n    first: $first\n    after: $after\n    search: $search\n    status: $status\n  ) {\n    edges {\n      cursor\n      node {\n        id\n        orderNumber\n        email\n        status\n        fulfillmentStatus\n        financialStatus\n        totalPrice\n        createdAt\n        lineItems {\n          id\n          title\n          quantity\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n      __typename\n    }\n    totalCount\n    __typename\n  }\n}", "graphql"=>{"operationName"=>"Orders", "variables"=>{"storeId"=>"aa9db840-4ede-4258-9ffc-1b3643463cda", "first"=>20}, "query"=>"query Orders($storeId: ID!, $first: Int, $after: String, $search: String, $status: String) {\n  orders(\n    storeId: $storeId\n    first: $first\n    after: $after\n    search: $search\n    status: $status\n  ) {\n    edges {\n      cursor\n      node {\n        id\n        orderNumber\n        email\n        status\n        fulfillmentStatus\n        financialStatus\n        totalPrice\n        createdAt\n        lineItems {\n          id\n          title\n          quantity\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n      __typename\n    }\n    totalCount\n    __typename\n  }\n}"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", "4a6a4aab-8b61-406b-ad22-57c64f19e3bf"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:49:in `from_jwt'
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 1723)
+
+
+Started POST "/graphql" for 192.168.65.1 at 2025-12-19 10:16:35 +0000
+Processing by GraphqlController#execute as */*
+  Parameters: {"operationName"=>"Inventory", "variables"=>{"storeId"=>"aa9db840-4ede-4258-9ffc-1b3643463cda"}, "query"=>"query Inventory($storeId: ID!, $threshold: Int) {\n  store(id: $storeId) {\n    id\n    lowStockThreshold\n    locations {\n      id\n      name\n      __typename\n    }\n    inventoryAlerts(reviewed: false) {\n      id\n      threshold\n      currentLevel\n      reviewed\n      createdAt\n      variant {\n        id\n        title\n        sku\n        displayName\n        product {\n          id\n          title\n          __typename\n        }\n        __typename\n      }\n      location {\n        id\n        name\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n  lowStockVariants(storeId: $storeId, threshold: $threshold) {\n    id\n    title\n    sku\n    displayName\n    totalAvailable\n    product {\n      id\n      title\n      __typename\n    }\n    inventoryLevels {\n      id\n      available\n      committed\n      location {\n        id\n        name\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}", "graphql"=>{"operationName"=>"Inventory", "variables"=>{"storeId"=>"aa9db840-4ede-4258-9ffc-1b3643463cda"}, "query"=>"query Inventory($storeId: ID!, $threshold: Int) {\n  store(id: $storeId) {\n    id\n    lowStockThreshold\n    locations {\n      id\n      name\n      __typename\n    }\n    inventoryAlerts(reviewed: false) {\n      id\n      threshold\n      currentLevel\n      reviewed\n      createdAt\n      variant {\n        id\n        title\n        sku\n        displayName\n        product {\n          id\n          title\n          __typename\n        }\n        __typename\n      }\n      location {\n        id\n        name\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n  lowStockVariants(storeId: $storeId, threshold: $threshold) {\n    id\n    title\n    sku\n    displayName\n    totalAvailable\n    product {\n      id\n      title\n      __typename\n    }\n    inventoryLevels {\n      id\n      available\n      committed\n      location {\n        id\n        name\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", "4a6a4aab-8b61-406b-ad22-57c64f19e3bf"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:49:in `from_jwt'
+  [1m[36mStore Load (0.3ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = $1 LIMIT $2[0m  [["id", "aa9db840-4ede-4258-9ffc-1b3643463cda"], ["LIMIT", 1]]
+  ↳ app/graphql/types/query_type.rb:49:in `store'
+  [1m[36mStoreMembership Load (0.2ms)[0m  [1m[34mSELECT "store_memberships".* FROM "store_memberships" WHERE "store_memberships"."user_id" = $1 AND "store_memberships"."store_id" = $2 LIMIT $3[0m  [["user_id", "4a6a4aab-8b61-406b-ad22-57c64f19e3bf"], ["store_id", "aa9db840-4ede-4258-9ffc-1b3643463cda"], ["LIMIT", 1]]
+  ↳ app/policies/application_policy.rb:48:in `membership'
+  [1m[36mCACHE Store Load (0.0ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = $1 LIMIT $2[0m  [["id", "aa9db840-4ede-4258-9ffc-1b3643463cda"], ["LIMIT", 1]]
+  ↳ app/graphql/types/query_type.rb:77:in `low_stock_variants'
+  [1m[36mCACHE StoreMembership Load (0.0ms)[0m  [1m[34mSELECT "store_memberships".* FROM "store_memberships" WHERE "store_memberships"."user_id" = $1 AND "store_memberships"."store_id" = $2 LIMIT $3[0m  [["user_id", "4a6a4aab-8b61-406b-ad22-57c64f19e3bf"], ["store_id", "aa9db840-4ede-4258-9ffc-1b3643463cda"], ["LIMIT", 1]]
+  ↳ app/policies/application_policy.rb:48:in `membership'
+  [1m[36mVariant Load (1.2ms)[0m  [1m[34mSELECT "variants".* FROM "variants" INNER JOIN "products" ON "products"."id" = "variants"."product_id" INNER JOIN "stores" ON "stores"."id" = "products"."store_id" INNER JOIN "inventory_levels" ON "inventory_levels"."variant_id" = "variants"."id" WHERE "products"."store_id" = $1 GROUP BY "variants"."id" HAVING (SUM(inventory_levels.available) <= 10)[0m  [["store_id", "aa9db840-4ede-4258-9ffc-1b3643463cda"]]
+  [1m[36mInventoryAlert Load (0.2ms)[0m  [1m[34mSELECT "inventory_alerts".* FROM "inventory_alerts" WHERE "inventory_alerts"."store_id" = $1 AND "inventory_alerts"."reviewed" = $2 ORDER BY "inventory_alerts"."created_at" DESC[0m  [["store_id", "aa9db840-4ede-4258-9ffc-1b3643463cda"], ["reviewed", false]]
+  [1m[36mLocation Load (0.2ms)[0m  [1m[34mSELECT "locations".* FROM "locations" WHERE "locations"."store_id" = $1[0m  [["store_id", "aa9db840-4ede-4258-9ffc-1b3643463cda"]]
+  ↳ app/graphql/sources/association_source.rb:12:in `fetch'
+Completed 200 OK in 46ms (Views: 0.1ms | ActiveRecord: 9.1ms | Allocations: 26060)
+
+
+Started POST "/graphql" for 192.168.65.1 at 2025-12-19 10:17:03 +0000
+Processing by GraphqlController#execute as */*
+  Parameters: {"operationName"=>"StoreSettings", "variables"=>{"storeId"=>"aa9db840-4ede-4258-9ffc-1b3643463cda"}, "query"=>"query StoreSettings($storeId: ID!) {\n  store(id: $storeId) {\n    id\n    name\n    slug\n    lowStockThreshold\n    settings\n    __typename\n  }\n}", "graphql"=>{"operationName"=>"StoreSettings", "variables"=>{"storeId"=>"aa9db840-4ede-4258-9ffc-1b3643463cda"}, "query"=>"query StoreSettings($storeId: ID!) {\n  store(id: $storeId) {\n    id\n    name\n    slug\n    lowStockThreshold\n    settings\n    __typename\n  }\n}"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", "4a6a4aab-8b61-406b-ad22-57c64f19e3bf"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:49:in `from_jwt'
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE "stores"."id" = $1 LIMIT $2[0m  [["id", "aa9db840-4ede-4258-9ffc-1b3643463cda"], ["LIMIT", 1]]
+  ↳ app/graphql/types/query_type.rb:49:in `store'
+  [1m[36mStoreMembership Load (0.2ms)[0m  [1m[34mSELECT "store_memberships".* FROM "store_memberships" WHERE "store_memberships"."user_id" = $1 AND "store_memberships"."store_id" = $2 LIMIT $3[0m  [["user_id", "4a6a4aab-8b61-406b-ad22-57c64f19e3bf"], ["store_id", "aa9db840-4ede-4258-9ffc-1b3643463cda"], ["LIMIT", 1]]
+  ↳ app/policies/application_policy.rb:48:in `membership'
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.5ms | Allocations: 2239)
+
+
+Started POST "/graphql" for 192.168.65.1 at 2025-12-19 10:17:06 +0000
+Processing by GraphqlController#execute as */*
+  Parameters: {"operationName"=>"GenerateDemoData", "variables"=>{"storeId"=>"aa9db840-4ede-4258-9ffc-1b3643463cda"}, "query"=>"mutation GenerateDemoData($storeId: ID!) {\n  generateDemoData(storeId: $storeId) {\n    success\n    jobId\n    errors\n    __typename\n  }\n}", "graphql"=>{"operationName"=>"GenerateDemoData", "variables"=>{"storeId"=>"aa9db840-4ede-4258-9ffc-1b3643463cda"}, "query"=>"mutation GenerateDemoData($storeId: ID!) {\n  generateDemoData(storeId: $storeId) {\n    success\n    jobId\n    errors\n    __typename\n  }\n}"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", "4a6a4aab-8b61-406b-ad22-57c64f19e3bf"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:49:in `from_jwt'
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 1124)
+
+
+Started GET "/cable" for 192.168.65.1 at 2025-12-19 10:17:12 +0000
+Started GET "/cable" [WebSocket] for 192.168.65.1 at 2025-12-19 10:17:12 +0000
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+Finished "/cable" [WebSocket] for 192.168.65.1 at 2025-12-19 10:17:12 +0000
+Started GET "/cable" for 192.168.65.1 at 2025-12-19 10:17:29 +0000
+Started GET "/cable" [WebSocket] for 192.168.65.1 at 2025-12-19 10:17:29 +0000
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+Finished "/cable" [WebSocket] for 192.168.65.1 at 2025-12-19 10:17:29 +0000
