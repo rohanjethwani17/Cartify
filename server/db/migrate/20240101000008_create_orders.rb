@@ -16,13 +16,13 @@ class CreateOrders < ActiveRecord::Migration[7.1]
       t.jsonb :billing_address, default: {}
       t.string :idempotency_key, index: { unique: true }
       t.text :note
-      
+
       t.timestamps
     end
-    
-    add_index :orders, [:store_id, :order_number], unique: true
-    add_index :orders, [:store_id, :status]
-    add_index :orders, [:store_id, :fulfillment_status]
+
+    add_index :orders, %i[store_id order_number], unique: true
+    add_index :orders, %i[store_id status]
+    add_index :orders, %i[store_id fulfillment_status]
     add_index :orders, :created_at
   end
 end

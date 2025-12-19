@@ -5,11 +5,11 @@ module Inventory
       @alert = alert
       @current_user = current_user
     end
-    
+
     def call
       ActiveRecord::Base.transaction do
         @alert.mark_reviewed!(@current_user)
-        
+
         # Create audit log
         AuditLog.log(
           store: @alert.store,
@@ -18,7 +18,7 @@ module Inventory
           resource: @alert,
           changes: { reviewed: [false, true] }
         )
-        
+
         success(@alert)
       end
     rescue ActiveRecord::RecordInvalid => e

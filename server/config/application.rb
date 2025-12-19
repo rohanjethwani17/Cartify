@@ -17,18 +17,18 @@ module Cartify
   class Application < Rails::Application
     config.load_defaults 7.1
     config.api_only = true
-    
+
     # TimeZone
     config.time_zone = 'UTC'
-    
+
     # Auto-load paths
     config.autoload_paths << Rails.root.join('app', 'services')
     config.autoload_paths << Rails.root.join('app', 'policies')
     config.autoload_paths << Rails.root.join('app', 'graphql')
-    
+
     # ActiveJob adapter
     config.active_job.queue_adapter = :sidekiq
-    
+
     # Generators
     config.generators do |g|
       g.test_framework :rspec

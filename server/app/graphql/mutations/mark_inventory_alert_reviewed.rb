@@ -1,22 +1,22 @@
 module Mutations
   class MarkInventoryAlertReviewed < BaseMutation
     argument :alert_id, ID, required: true
-    
+
     field :inventory_alert, Types::InventoryAlertType, null: true
     field :errors, [String], null: false
-    
+
     def resolve(alert_id:)
       require_auth!
-      
+
       alert = InventoryAlert.find(alert_id)
       with_store(alert.store)
       authorize!(alert, :mark_reviewed)
-      
+
       result = Inventory::MarkAlertReviewed.call(
         alert: alert,
         current_user: current_user
       )
-      
+
       if result.success?
         { inventory_alert: result.data, errors: [] }
       else

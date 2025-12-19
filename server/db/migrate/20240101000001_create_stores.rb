@@ -5,7 +5,7 @@ class CreateStores < ActiveRecord::Migration[7.1]
       t.string :slug, null: false, index: { unique: true }
       t.integer :low_stock_threshold, default: 10
       t.jsonb :settings, default: {}
-      
+
       t.timestamps
     end
   end

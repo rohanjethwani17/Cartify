@@ -6,20 +6,18 @@ module Products
       @attributes = attributes
       @current_user = current_user
     end
-    
+
     def call
       ActiveRecord::Base.transaction do
         changes = {}
-        
+
         # Track changes
         @attributes.each do |key, value|
-          if @product.respond_to?(key) && @product.send(key) != value
-            changes[key] = [@product.send(key), value]
-          end
+          changes[key] = [@product.send(key), value] if @product.respond_to?(key) && @product.send(key) != value
         end
-        
+
         @product.update!(@attributes.slice(:title, :description, :status, :product_type, :vendor))
-        
+
         # Create audit log
         AuditLog.log(
           store: @product.store,
@@ -28,7 +26,7 @@ module Products
           resource: @product,
           changes: changes
         )
-        
+
         success(@product)
       end
     rescue ActiveRecord::RecordInvalid => e

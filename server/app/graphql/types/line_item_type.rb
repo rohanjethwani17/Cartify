@@ -11,17 +11,17 @@ module Types
     field :fulfilled_quantity, Integer, null: false
     field :total, Float, null: false
     field :remaining_to_fulfill, Integer, null: false
-    
+
     field :variant, Types::VariantType, null: false
-    
+
     def variant
       dataloader.with(Sources::RecordSource, Variant).load(object.variant_id)
     end
-    
+
     def total
       object.total
     end
-    
+
     def remaining_to_fulfill
       object.remaining_to_fulfill
     end

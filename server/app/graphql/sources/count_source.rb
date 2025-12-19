@@ -4,13 +4,13 @@ module Sources
       @model_class = model_class
       @column = column
     end
-    
+
     def fetch(ids)
       counts = @model_class
-        .where(@column => ids)
-        .group(@column)
-        .count
-      
+               .where(@column => ids)
+               .group(@column)
+               .count
+
       ids.map { |id| counts[id] || 0 }
     end
   end

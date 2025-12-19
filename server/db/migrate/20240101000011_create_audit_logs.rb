@@ -10,12 +10,12 @@ class CreateAuditLogs < ActiveRecord::Migration[7.1]
       t.jsonb :metadata, default: {}
       t.inet :ip_address
       t.string :user_agent
-      
+
       t.timestamps
     end
-    
-    add_index :audit_logs, [:store_id, :resource_type, :resource_id]
-    add_index :audit_logs, [:store_id, :action]
+
+    add_index :audit_logs, %i[store_id resource_type resource_id]
+    add_index :audit_logs, %i[store_id action]
     add_index :audit_logs, :created_at
   end
 end

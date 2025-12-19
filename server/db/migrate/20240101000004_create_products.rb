@@ -8,11 +8,11 @@ class CreateProducts < ActiveRecord::Migration[7.1]
       t.string :product_type
       t.string :vendor
       t.jsonb :metadata, default: {}
-      
+
       t.timestamps
     end
-    
-    add_index :products, [:store_id, :status]
-    add_index :products, [:store_id, :title]
+
+    add_index :products, %i[store_id status]
+    add_index :products, %i[store_id title]
   end
 end

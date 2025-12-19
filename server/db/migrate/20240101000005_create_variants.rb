@@ -11,7 +11,7 @@ class CreateVariants < ActiveRecord::Migration[7.1]
       t.boolean :requires_shipping, default: true
       t.decimal :weight, precision: 10, scale: 2
       t.string :weight_unit, default: 'kg'
-      
+
       t.timestamps
     end
   end

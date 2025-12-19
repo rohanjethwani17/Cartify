@@ -9,10 +9,10 @@ class CreateInventoryAlerts < ActiveRecord::Migration[7.1]
       t.boolean :reviewed, default: false
       t.references :reviewed_by, foreign_key: { to_table: :users }, type: :uuid
       t.datetime :reviewed_at
-      
+
       t.timestamps
     end
-    
-    add_index :inventory_alerts, [:store_id, :reviewed]
+
+    add_index :inventory_alerts, %i[store_id reviewed]
   end
 end

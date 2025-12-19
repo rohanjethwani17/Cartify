@@ -8,7 +8,7 @@ module Products
       @variants_data = variants
       @current_user = current_user
     end
-    
+
     def call
       ActiveRecord::Base.transaction do
         @product = @store.products.create!(
@@ -18,11 +18,11 @@ module Products
           product_type: @attributes[:product_type],
           vendor: @attributes[:vendor]
         )
-        
+
         # Create variants if provided
         if @variants_data.any?
           @product.variants.destroy_all # Remove default variant
-          
+
           @variants_data.each_with_index do |variant_data, index|
             @product.variants.create!(
               title: variant_data[:title] || 'Default',
@@ -33,7 +33,7 @@ module Products
             )
           end
         end
-        
+
         # Create audit log
         AuditLog.log(
           store: @store,
@@ -42,7 +42,7 @@ module Products
           resource: @product,
           changes: { title: [nil, @title], status: [nil, @product.status] }
         )
-        
+
         success(@product)
       end
     rescue ActiveRecord::RecordInvalid => e

@@ -10,7 +10,7 @@ class CreateLocations < ActiveRecord::Migration[7.1]
       t.string :country, default: 'US'
       t.string :zip
       t.boolean :active, default: true
-      
+
       t.timestamps
     end
   end

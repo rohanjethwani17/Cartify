@@ -31,11 +31,16 @@ end
 
 puts 'Creating products...'
 products_data = [
-  { title: 'Classic T-Shirt', description: 'Comfortable cotton t-shirt', product_type: 'Apparel', vendor: 'Cartify Basics', status: 'active' },
-  { title: 'Premium Hoodie', description: 'Warm and cozy hoodie', product_type: 'Apparel', vendor: 'Cartify Basics', status: 'active' },
-  { title: 'Coffee Mug', description: '12oz ceramic mug', product_type: 'Accessories', vendor: 'Cartify Home', status: 'active' },
-  { title: 'Laptop Sleeve', description: 'Protective laptop sleeve', product_type: 'Tech', vendor: 'Cartify Tech', status: 'active' },
-  { title: 'Notebook', description: 'Lined notebook 200 pages', product_type: 'Stationery', vendor: 'Cartify Office', status: 'active' }
+  { title: 'Classic T-Shirt', description: 'Comfortable cotton t-shirt', product_type: 'Apparel',
+    vendor: 'Cartify Basics', status: 'active' },
+  { title: 'Premium Hoodie', description: 'Warm and cozy hoodie', product_type: 'Apparel', vendor: 'Cartify Basics',
+    status: 'active' },
+  { title: 'Coffee Mug', description: '12oz ceramic mug', product_type: 'Accessories', vendor: 'Cartify Home',
+    status: 'active' },
+  { title: 'Laptop Sleeve', description: 'Protective laptop sleeve', product_type: 'Tech', vendor: 'Cartify Tech',
+    status: 'active' },
+  { title: 'Notebook', description: 'Lined notebook 200 pages', product_type: 'Stationery', vendor: 'Cartify Office',
+    status: 'active' }
 ]
 
 products_data.each do |data|
@@ -45,23 +50,25 @@ products_data.each do |data|
     p.vendor = data[:vendor]
     p.status = data[:status]
   end
-  
+
   # Create variants
   variants_for_product = case data[:title]
-  when 'Classic T-Shirt'
-    [{ title: 'Small', price: 29.99, sku: 'TS-S' }, { title: 'Medium', price: 29.99, sku: 'TS-M' }, { title: 'Large', price: 29.99, sku: 'TS-L' }]
-  when 'Premium Hoodie'
-    [{ title: 'Small', price: 59.99, sku: 'HD-S' }, { title: 'Medium', price: 59.99, sku: 'HD-M' }, { title: 'Large', price: 59.99, sku: 'HD-L' }]
-  else
-    [{ title: 'Default', price: rand(10..50).to_f, sku: data[:title].parameterize.upcase[0..5] }]
-  end
-  
+                         when 'Classic T-Shirt'
+                           [{ title: 'Small', price: 29.99, sku: 'TS-S' }, { title: 'Medium', price: 29.99, sku: 'TS-M' },
+                            { title: 'Large', price: 29.99, sku: 'TS-L' }]
+                         when 'Premium Hoodie'
+                           [{ title: 'Small', price: 59.99, sku: 'HD-S' }, { title: 'Medium', price: 59.99, sku: 'HD-M' },
+                            { title: 'Large', price: 59.99, sku: 'HD-L' }]
+                         else
+                           [{ title: 'Default', price: rand(10..50).to_f, sku: data[:title].parameterize.upcase[0..5] }]
+                         end
+
   variants_for_product.each do |variant_data|
     variant = Variant.find_or_create_by!(product: product, sku: variant_data[:sku]) do |v|
       v.title = variant_data[:title]
       v.price = variant_data[:price]
     end
-    
+
     # Create inventory levels
     locations.each do |location|
       InventoryLevel.find_or_create_by!(variant: variant, location: location) do |il|
@@ -79,33 +86,33 @@ puts 'Creating sample orders...'
     o.fulfillment_status = 'unfulfilled'
     o.financial_status = 'paid'
     o.shipping_address = {
-      first_name: "Customer",
-      last_name: "#{i + 1}",
+      first_name: 'Customer',
+      last_name: (i + 1).to_s,
       address1: "#{rand(100..999)} Main St",
-      city: "San Francisco",
-      province: "CA",
-      zip: "94102",
-      country: "US"
+      city: 'San Francisco',
+      province: 'CA',
+      zip: '94102',
+      country: 'US'
     }
   end
-  
+
   # Add line items
-  if order.line_items.empty?
-    rand(1..3).times do
-      variant = Variant.joins(:product).where(products: { store_id: store.id }).sample
-      next unless variant
-      
-      LineItem.create!(
-        order: order,
-        variant: variant,
-        quantity: rand(1..3)
-      )
-    end
-    
-    order.calculate_totals
-    order.save!
+  next unless order.line_items.empty?
+
+  rand(1..3).times do
+    variant = Variant.joins(:product).where(products: { store_id: store.id }).sample
+    next unless variant
+
+    LineItem.create!(
+      order: order,
+      variant: variant,
+      quantity: rand(1..3)
+    )
   end
+
+  order.calculate_totals
+  order.save!
 end
 
 puts 'Seed complete!'
-puts "Login with: demo@cartify.dev / password123"
+puts 'Login with: demo@cartify.dev / password123'

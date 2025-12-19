@@ -11,7 +11,7 @@ class CreateLineItems < ActiveRecord::Migration[7.1]
       t.decimal :total_discount, precision: 10, scale: 2, default: 0
       t.boolean :requires_shipping, default: true
       t.integer :fulfilled_quantity, default: 0
-      
+
       t.timestamps
     end
   end

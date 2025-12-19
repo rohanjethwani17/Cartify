@@ -8,7 +8,7 @@ class CreateFulfillments < ActiveRecord::Migration[7.1]
       t.string :tracking_number
       t.string :tracking_url
       t.datetime :shipped_at
-      
+
       t.timestamps
     end
   end

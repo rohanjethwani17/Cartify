@@ -8,19 +8,19 @@ module Types
     field :vendor, String, null: true
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
-    
+
     field :store, Types::StoreType, null: false
     field :variants, [Types::VariantType], null: false
     field :total_inventory, Integer, null: false
-    
+
     def store
       dataloader.with(Sources::RecordSource, Store).load(object.store_id)
     end
-    
+
     def variants
       dataloader.with(Sources::AssociationSource, :variants).load(object)
     end
-    
+
     def total_inventory
       object.total_inventory
     end

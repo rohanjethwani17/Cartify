@@ -5,7 +5,7 @@ Rails.application.configure do
   config.eager_load = false
   config.consider_all_requests_local = true
   config.server_timing = true
-  
+
   if Rails.root.join('tmp/caching-dev.txt').exist?
     config.cache_store = :memory_store
     config.public_file_server.headers = {
@@ -15,13 +15,13 @@ Rails.application.configure do
     config.action_controller.perform_caching = false
     config.cache_store = :null_store
   end
-  
+
   config.active_support.deprecation = :log
   config.active_support.disallowed_deprecation = :raise
   config.active_support.disallowed_deprecation_warnings = []
   config.active_record.migration_error = :page_load
   config.active_record.verbose_query_logs = true
-  
+
   # ActionCable
   config.action_cable.url = ENV.fetch('ACTION_CABLE_URL') { 'ws://localhost:3000/cable' }
   config.action_cable.allowed_request_origins = [/.*/]

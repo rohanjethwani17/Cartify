@@ -25,7 +25,7 @@ gem 'redis-actionpack', '~> 5.4'
 # Utilities
 gem 'bootsnap', require: false
 gem 'rack-cors'
-gem 'dotenv-rails', groups: [:development, :test]
+gem 'dotenv-rails', groups: %i[development test]
 
 # JSON serialization
 gem 'oj', '~> 3.16'

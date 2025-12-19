@@ -138,6 +138,19 @@ subscription {
 }
 ```
 
+### Subscription Troubleshooting
+
+If subscriptions don't update in real-time:
+
+1. **Check Redis is running**: `docker compose ps` - Redis container should be healthy
+2. **Verify ActionCable connection**: Browser DevTools → Network → WS tab → look for `/cable` connection
+3. **Check server logs**: `docker compose logs server -f` - look for subscription trigger messages
+4. **Verify CORS/origins**: In development, `config.action_cable.allowed_request_origins` accepts all origins
+5. **Test subscription trigger**: Run in Rails console:
+   ```ruby
+   CartifySchema.subscriptions.trigger(:order_created, {store_id: Store.first.id}, Order.last)
+   ```
+
 ## GraphQL Batching (N+1 Prevention)
 
 We use graphql-ruby's built-in Dataloader:
