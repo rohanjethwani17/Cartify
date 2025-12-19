@@ -20,16 +20,16 @@ class CartifySchema < GraphQL::Schema
   default_max_page_size 50
 
   # Error handling
-  rescue_from(ActiveRecord::RecordNotFound) do |err, obj, args, ctx, field|
+  rescue_from(ActiveRecord::RecordNotFound) do |_err, _obj, _args, _ctx, field|
     raise GraphQL::ExecutionError, "#{field.type.unwrap.graphql_name} not found"
   end
 
-  rescue_from(ActiveRecord::RecordInvalid) do |err, obj, args, ctx, field|
+  rescue_from(ActiveRecord::RecordInvalid) do |err, _obj, _args, _ctx, _field|
     raise GraphQL::ExecutionError, err.record.errors.full_messages.join(', ')
   end
 
   # Union/Interface resolution
-  def self.resolve_type(abstract_type, obj, ctx)
+  def self.resolve_type(_abstract_type, obj, _ctx)
     case obj
     when Order then Types::OrderType
     when Product then Types::ProductType
@@ -40,12 +40,12 @@ class CartifySchema < GraphQL::Schema
   end
 
   # Object identification for Relay
-  def self.object_from_id(id, ctx)
+  def self.object_from_id(id, _ctx)
     type, db_id = GraphQL::Schema::UniqueWithinType.decode(id)
     type.constantize.find(db_id)
   end
 
-  def self.id_from_object(object, type_definition, ctx)
+  def self.id_from_object(object, _type_definition, _ctx)
     GraphQL::Schema::UniqueWithinType.encode(object.class.name, object.id)
   end
 end
